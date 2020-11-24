@@ -12,8 +12,10 @@ import SlideShow from './src/components/SlideShow';
       
     return(
         <View>
-        <Text>hello</Text>
-        {/* <View style={styles.textcontainer}>
+        <View style={styles.container}>
+        <SlideShow/>
+        </View>
+        <View style={styles.textcontainer}>
         <Text style={{fontSize:18, fontWeight:'bold'}}>Categories</Text>
         </View>
         <View style={styles.Categorycontainer}>
@@ -36,25 +38,29 @@ import SlideShow from './src/components/SlideShow';
         <Text style={styles.textStyle}>spicy</Text>
         </TouchableOpacity>
         </View>
-        <Products/> */}
+        <Products/>
         </View>
     )
 }
 const styles = StyleSheet.create({  
+    container:{
+        height:270,
+        width:'100%',
+        paddingTop:10
+    },
     Categorycontainer: { 
-      marginTop:45,   
       flexDirection:"row",
       justifyContent:'space-around',
-      padding:10,
       backgroundColor:'black',
       height:60,
       alignItems:'center'
 
   },
   textcontainer:{
+    marginBottom:25,
+
       justifyContent:'center',
       alignItems:'center',
-      marginTop:100,
   },
   textStyle:{
       fontSize:16,
