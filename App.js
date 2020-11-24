@@ -3,73 +3,77 @@ import React, { useState,Component } from "react";
 import Icon from 'react-native-vector-icons/Ionicons'
 import Products from './src/screens/Menu/Products'
 import Time from './src/screens/timepicker/time'
-
+import Menu from './src/screens/Menu/Menu'
 import SlideShow from './src/components/SlideShow';
-
 
  export default function App(){
   
       
     return(
         <View>
-        <View style={styles.container}>
-        <SlideShow/>
-        </View>
-        <View style={styles.textcontainer}>
-        <Text style={{fontSize:18, fontWeight:'bold'}}>Categories</Text>
-        </View>
-        <View style={styles.Categorycontainer}>
-        <TouchableOpacity onPress={()=>
- console.log("hello")        }>
-        <Text style={styles.textStyle}>Pizza</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={()=>   
-        {
-            console.log("hello")        }     
-}>
-        <Text style={styles.textStyle}>Broioches</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={()=> console.log("hello")
-}>
-        <Text style={styles.textStyle}>Menu Vegano</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={()=>   console.log("hello")
-}>
-        <Text style={styles.textStyle}>spicy</Text>
-        </TouchableOpacity>
-        </View>
-        <Products/>
+        <Menu/>
         </View>
     )
-}
-const styles = StyleSheet.create({  
-    container:{
-        height:270,
-        width:'100%',
-        paddingTop:10
-    },
-    Categorycontainer: { 
-      flexDirection:"row",
-      justifyContent:'space-around',
-      backgroundColor:'black',
-      height:60,
-      alignItems:'center'
+ }
+//         <View>
+//         <View style={styles.container}>
+//         <SlideShow/>
+//         </View>
+//         <View style={styles.textcontainer}>
+//         <Text style={{fontSize:18, fontWeight:'bold'}}>Categories</Text>
+//         </View>
+//         <View style={styles.Categorycontainer}>
+//         <TouchableOpacity onPress={()=>
+//  console.log("hello")        }>
+//         <Text style={styles.textStyle}>Pizza</Text>
+//         </TouchableOpacity>
+//         <TouchableOpacity onPress={()=>   
+//         {
+//             console.log("hello")        }     
+// }>
+//         <Text style={styles.textStyle}>Broioches</Text>
+//         </TouchableOpacity>
+//         <TouchableOpacity onPress={()=> console.log("hello")
+// }>
+//         <Text style={styles.textStyle}>Menu Vegano</Text>
+//         </TouchableOpacity>
+//         <TouchableOpacity onPress={()=>   console.log("hello")
+// }>
+//         <Text style={styles.textStyle}>spicy</Text>
+//         </TouchableOpacity>
+//         </View>
+//         <Products/>
+//         </View>
+//     )
+// }
+// const styles = StyleSheet.create({  
+//     container:{
+//         height:270,
+//         width:'100%',
+//         paddingTop:10
+//     },
+//     Categorycontainer: { 
+//       flexDirection:"row",
+//       justifyContent:'space-around',
+//       backgroundColor:'black',
+//       height:60,
+//       alignItems:'center'
 
-  },
-  textcontainer:{
-    marginBottom:25,
+//   },
+//   textcontainer:{
+//     marginBottom:25,
 
-      justifyContent:'center',
-      alignItems:'center',
-  },
-  textStyle:{
-      fontSize:16,
-      color:'white'
-  }
+//       justifyContent:'center',
+//       alignItems:'center',
+//   },
+//   textStyle:{
+//       fontSize:16,
+//       color:'white'
+//   }
 
   
 
-});
+// });
 
   
 
