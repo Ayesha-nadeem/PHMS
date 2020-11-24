@@ -76,22 +76,7 @@ export default class HomeScreen extends React.Component {
       isLoading:true,
       Rooms:HRooms
   })
-    /*
-    fetch('http://82.165.158.88/Hotels/?format=json').then((response)=>response.json())
-    .then((responseJson)=>{
-        this.setState({
-            isLoading:true,
-            dataSource:responseJson
-        })
-    })
-    fetch('http://192.168.100.3:8000/Room/?format=json').then((response)=>response.json())
-    .then((responseJson)=>{
-        console.log(responseJson);
-        this.setState({
-            isLoading:true,
-            Rooms:responseJson
-        })
-    })*/
+ 
 }
 // onPressRecipe = item => {
 //   this.props.navigation.navigate('Breakfast', { item });

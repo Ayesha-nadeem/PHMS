@@ -62,21 +62,7 @@ class CartScreen extends Component {
       Rooms:HRooms
       //Rooms:HRooms.filter(d => d.room_code==this.props.cartItems[0].room)
   });
-        /*fetch('http://192.168.100.3:8000/Room/?format=json').then((response)=>response.json())
-        .then((responseJson)=>{
-            this.setState({
-                isLoading:true,
-                room:responseJson.filter(d => d.room_code===this.props.cartItems[0].room)
-            })
-        })
-        fetch('http://192.168.100.3:8000/TimeSlot/?format=json').then((response)=>response.json())
-        .then((responseJson)=>{
-            this.setState({
-                isLoading:true,
-                timeslots:responseJson
-            })
-        })*/
-    }
+}
     render() {
         // this.props.cartItems[0]['hotel']=this.props.hotel
         // console.log(this.props.cartItems,"sasdsdad",this.state.timeslots,"zoo",this.state.room)
