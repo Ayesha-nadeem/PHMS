@@ -1,32 +1,42 @@
-import React, { useState } from "react";
+import React, { useState,Component } from "react";
  import { Image,Text,TextInput,StyleSheet,Button, View,Modal,TouchableOpacity,FlatList,Alert} from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons'
 import Products from './src/screens/Menu/Products'
 import Time from './src/screens/timepicker/time'
+
+import SlideShow from './src/components/SlideShow';
+
+
  export default function App(){
+  
+      
     return(
         <View>
-    
-        <View style={styles.textcontainer}>
+        <Text>hello</Text>
+        {/* <View style={styles.textcontainer}>
         <Text style={{fontSize:18, fontWeight:'bold'}}>Categories</Text>
         </View>
         <View style={styles.Categorycontainer}>
         <TouchableOpacity onPress={()=>
-        console.log('hye')
-        }>
+ console.log("hello")        }>
         <Text style={styles.textStyle}>Pizza</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>console.log('hello')}>
+        <TouchableOpacity onPress={()=>   
+        {
+            console.log("hello")        }     
+}>
         <Text style={styles.textStyle}>Broioches</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>console.log('hello')}>
+        <TouchableOpacity onPress={()=> console.log("hello")
+}>
         <Text style={styles.textStyle}>Menu Vegano</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>console.log('hello')}>
+        <TouchableOpacity onPress={()=>   console.log("hello")
+}>
         <Text style={styles.textStyle}>spicy</Text>
         </TouchableOpacity>
         </View>
-        <Products/>
+        <Products/> */}
         </View>
     )
 }
@@ -292,4 +302,4 @@ const styles = StyleSheet.create({
           
 //       </View>
 //     );
- //}
+//  }
