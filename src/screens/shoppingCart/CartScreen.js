@@ -83,21 +83,6 @@ class CartScreen extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        cartItems: state
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        removeItem: (product) => dispatch({ type: 'REMOVE_FROM_CART', payload: product })
-    }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(CartScreen);
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
