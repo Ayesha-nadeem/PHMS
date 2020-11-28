@@ -12,16 +12,25 @@ import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/Ionicons'
 
 const ShoppingCartIcon = (props) => (
-    <View onPress={nevigatetocartscreen} style={[{ padding:1 }, Platform.OS == 'android' ? styles.iconContainer : null]}>
+    <View onPress={() => props.navigation.navigate('Cart')} style={[{ padding:1 }, Platform.OS == 'android' ? styles.iconContainer : null]}>
         <View style={{
-            position: 'absolute', height: 30, width: 30, borderRadius: 15, backgroundColor: 'rgba(95,197,123,0.8)', right: 15, bottom: 15, alignItems: 'center', justifyContent: 'center', zIndex: 2000,
+            position: 'absolute', height: 30, width: 30, borderRadius: 15, backgroundColor: 'rgba(66,19,123,0.8)', right: 15, bottom: 15, alignItems: 'center', justifyContent: 'center', zIndex: 2000,
 
         }}>
-            <Text style={{ color: 'white', fontWeight: 'bold' }}>{cartitemslength}</Text>
+            <Text style={{ color: 'white', fontWeight: 'bold' }}>{props.cartItems.length}</Text>
         </View>
-        <Icon onPress={nevigatetocartscreen} name="ios-cart" size={30} />
+        <Icon onPress={() => props.navigation.navigate('Cart')} name="ios-cart" size={30} />
     </View>
 )
+
+const mapStateToProps = (state) => {
+    return {
+        cartItems: state
+    }
+}
+
+export default connect(mapStateToProps)(withNavigation(ShoppingCartIcon));
+
 
 
 const styles = StyleSheet.create({

@@ -15,3 +15,7 @@ export default class MenuImage extends React.Component {
     );
   }
 }
+
+MenuImage.propTypes = {
+  onPress: PropTypes.func
+};

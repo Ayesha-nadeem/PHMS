@@ -17,6 +17,26 @@ const styles = StyleSheet.create({
     borderWidth: 2,  
     borderColor: '#FFA701',    
   } ,
+  ProductButton:{
+    
+    backgroundColor:'#FFA700',
+    borderColor: '#fff',
+    height:30,
+    marginBottom:8,
+    width:160,
+    borderRadius: 10,  
+    
+  },
+  Productbuttontitle: {
+    flex: 1,
+    fontSize: 17,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#ffffff',
+    marginTop: 3,
+    marginRight: 5,
+    marginLeft: 5,
+  },
   centeredView: {
     flex: 1,
     justifyContent: "center",
@@ -54,14 +74,15 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   categoriesItemContainer: {
-    flex: 1,
+   
     margin: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    height: 215,
+    height: 40,
     borderColor: '#cccccc',
     borderWidth: 0.5,
     borderRadius: 20,
+    backgroundColor:'#ffffff'
   },
   categoriesPhoto: {
     width: '100%',
@@ -84,7 +105,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#333333',
-    marginTop: 8
+    margin: 5
   },
   categoriesInfo: {
     marginTop: 3,
