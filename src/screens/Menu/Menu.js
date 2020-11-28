@@ -154,7 +154,7 @@ s=(<Items id={this.state.x} hotel={this.props.navigation.getParam('item')} room=
         return (
             <View>
                 
-            <View >
+            <View style={styles.FlatlistStyle}>
                 <FlatList
                 horizontal
                 // vertical
@@ -162,7 +162,7 @@ s=(<Items id={this.state.x} hotel={this.props.navigation.getParam('item')} room=
                 // numColumns={1}
                 data={this.state.dataSource.filter(d => d.hotel_id===this.props.navigation.getParam('item'))}
                 renderItem={this.renderCategory}
-                keyExtractor={item => `${item.recipeId}`}
+                keyExtractor={(item) => item.id}
                 />
                
                 {/* <Products products={this.state.dataSource.filter(d => d.hotel_id===this.props.navigation.getParam('item'))}  /> */}

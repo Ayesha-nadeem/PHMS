@@ -37,6 +37,10 @@ const styles = StyleSheet.create({
     marginRight: 5,
     marginLeft: 5,
   },
+  FlatlistStyle:
+  {
+    backgroundColor:'#000000',
+  },
   centeredView: {
     flex: 1,
     justifyContent: "center",
@@ -79,10 +83,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: 40,
-    borderColor: '#cccccc',
+    borderColor: '#000000',
     borderWidth: 0.5,
     borderRadius: 20,
-    backgroundColor:'#ffffff'
+    backgroundColor:'#000000'
   },
   categoriesPhoto: {
     width: '100%',
@@ -104,7 +108,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#333333',
+    color: '#ffffff',
     margin: 5
   },
   categoriesInfo: {
