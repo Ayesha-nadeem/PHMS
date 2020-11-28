@@ -101,7 +101,7 @@ export default class HomeScreen extends React.Component {
                   if (varify.length>0){
                     var item = this.state.hotelid;
                     var room =this.state.input;
-                    this.props.navigation.navigate('Breakfast',{item,room});
+                    this.props.navigation.navigate('Option',{item,room});
                     this.setState({modalVisible: false});
                     this.state.input=null;
                   }

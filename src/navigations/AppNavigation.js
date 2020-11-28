@@ -26,7 +26,8 @@ import IngredientsDetailsScreen from '../screens/IngredientsDetails/IngredientsD
 import ShoppingCartIcon from '../screens/shoppingCart/shoppingCart';
 import CartScreen from '../screens/shoppingCart/CartScreen';
 import MenuButton from '../components/MenuButton/MenuButton';
-
+import OptionScreen from '../screens/Option/OptionScreen';
+import RoomTypeList from '../screens/Room/RoomTypeList';
 /* const Stack = createStackNavigator();
 
 function MainNavigator() {
@@ -65,6 +66,8 @@ const MainNavigator = createStackNavigator(
     Time:Example,
     Breakfast:Menu,
     Cart:CartScreen,
+    Option: OptionScreen,
+    Room: RoomTypeList
   },
   // {
   //   defaultNavigationOptions: ({ navigation })=>({
@@ -77,7 +80,7 @@ const MainNavigator = createStackNavigator(
     initialRouteName: 'Home',
     // headerMode: 'float',
     defaultNavigationOptions: ({ navigation }) => ({
-      headerTitle: 'B&B Breakfast',
+      headerTitle: 'PHMS',
       headerRight: ()=><ShoppingCartIcon />,
       
             // <ShoppingCartIcon />,
