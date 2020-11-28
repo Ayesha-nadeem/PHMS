@@ -45,7 +45,8 @@ class Products extends Component {
             {/* <ion-icon name="add-circle-outline"></ion-icon> */}
            
             <TouchableOpacity  style={styles.ProductButton} onPress={() => this.props.onPress(item)}>
-              <Text  style={styles.Productbuttontitle}>add to cart</Text></TouchableOpacity>
+            <Icon name="ios-cart" size={22}  style={styles.ProductbuttonIcon}/>
+            <Text  style={styles.Productbuttontitle}>add to cart</Text></TouchableOpacity>
             {/* <Text style={styles.categoriesName}>{this.props.hotel}</Text> */}
             {/* <Text style={styles.categoriesName}>{this.props.room}</Text> */}
             {/* <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text> */}

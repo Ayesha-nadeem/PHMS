@@ -18,24 +18,30 @@ const styles = StyleSheet.create({
     borderColor: '#FFA701',    
   } ,
   ProductButton:{
-    
-    backgroundColor:'#FFA700',
+    flexDirection:'row',
+    backgroundColor:'#FFa000',
     borderColor: '#fff',
     height:30,
     marginBottom:8,
     width:160,
-    borderRadius: 10,  
-    
+    borderRadius: 10, 
+        
   },
   Productbuttontitle: {
-    flex: 1,
-    fontSize: 17,
+  
+    fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#ffffff',
     marginTop: 3,
-    marginRight: 5,
-    marginLeft: 5,
+    marginStart:5,
+  },
+  ProductbuttonIcon: {
+    
+    color: '#ffffff',
+    marginTop: 3,
+    marginStart:25,
+
   },
   FlatlistStyle:
   {
