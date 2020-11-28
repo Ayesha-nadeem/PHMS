@@ -154,7 +154,7 @@ s=(<Items id={this.state.x} hotel={this.props.navigation.getParam('item')} room=
         return (
             <View>
                 
-            <View>
+            <View >
                 <FlatList
                 horizontal
                 // vertical
