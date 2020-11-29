@@ -50,13 +50,13 @@ export default class RoomTypeList extends React.Component {
    
   
     <TouchableHighlight underlayColor='rgba(73,182,77,1,0.9)'  onPress={() => {  var hotel=this.props.navigation.getParam('item');
-    var room=this.props.navigation.getParam('room');
+    //var room=this.props.navigation.getParam('room');
     var rt= item.id;
     this.setState({
       hotelid: hotel.id,
       roomType:item.id,
   })
-    this.props.navigation.navigate('Home',{rt,room,hotel});}} >
+    this.props.navigation.navigate('Home',{rt,hotel});}} >
       
       <View style={styles.container}>
         <Image style={styles.photo} source={(item.photo_url)} />

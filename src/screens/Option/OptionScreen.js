@@ -38,14 +38,14 @@ export default class OptionScreen extends React.Component {
         {
             console.log(opt);
             var item=this.props.navigation.getParam('item');
-            var room=this.props.navigation.getParam('room');
-            this.props.navigation.navigate('Breakfast',{item,room});
+            //var room=this.props.navigation.getParam('room');
+            this.props.navigation.navigate('Breakfast',{item});
         }
         else{
             console.log(opt);
             var item=this.props.navigation.getParam('item');
-            var room=this.props.navigation.getParam('room');
-            this.props.navigation.navigate('Room',{item,room});
+            //var room=this.props.navigation.getParam('room');
+            this.props.navigation.navigate('Room',{item});
         }
         
 
