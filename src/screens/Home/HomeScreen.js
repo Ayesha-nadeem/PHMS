@@ -4,7 +4,7 @@ import styles from './styles';
 import { recipes } from '../../data/dataArrays';
 import MenuImage from '../../components/MenuImage/MenuImage';
 import DrawerActions from 'react-navigation';
-import { getCategoryName } from '../../data/MockDataAPI';
+import { getCategoryName, getRecipesByRecipeName } from '../../data/MockDataAPI';
 import ShoppingCartIcon from '../../screens/shoppingCart/shoppingCart';
 
 export default class HomeScreen extends React.Component {
@@ -24,7 +24,7 @@ export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state={
-      modalVisible: false,
+      //modalVisible: false,
       hotelname:null,
       hotelid:null,
       isLoading:true,
@@ -47,7 +47,7 @@ export default class HomeScreen extends React.Component {
     })
     fetch('http://82.165.158.88/Room/?format=json').then((response)=>response.json())
     .then((responseJson)=>{
-        console.log(responseJson);
+       
         this.setState({
             isLoading:true,
             Rooms:responseJson
@@ -59,7 +59,14 @@ export default class HomeScreen extends React.Component {
 // };
   renderRecipes = ({ item }) => (
     
-    <TouchableHighlight underlayColor='rgba(73,182,77,1,0.9)' onPress={() => this.setState({modalVisible:true,hotelname:item.name,hotelid:item.id})}>
+    <TouchableHighlight underlayColor='rgba(73,182,77,1,0.9)' onPress={() => 
+      {
+       this.setState({hotelname:item.name,hotelid:item.id});
+      var hotel = this.state.hotelid;
+      console.log(hotel);
+      this.props.navigation.navigate('Option',{hotel});
+  
+  } }>
       
       <View style={styles.container}>
         <Image style={styles.photo} source={{ uri: item.photo_url }} />
@@ -71,10 +78,10 @@ export default class HomeScreen extends React.Component {
 
   render() {
     
-    const { modalVisible } = this.state;
+   // const { modalVisible } = this.state;
     return (
       <View>
-        <Modal
+      { /* <Modal
           animationType="slide"
           transparent={true}
           visible={modalVisible}
@@ -108,12 +115,13 @@ export default class HomeScreen extends React.Component {
                     
                 }}
               >
-                {/* sIq3ADHz */}
+                
                 <Text style={styles.textStyle}>Submit</Text>
               </TouchableHighlight>
             </View>
           </View>
         </Modal>
+        */}
         <FlatList
           vertical
           showsVerticalScrollIndicator={false}

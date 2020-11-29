@@ -37,15 +37,15 @@ export default class OptionScreen extends React.Component {
         if (opt=="Menu")
         {
             console.log(opt);
-            var item=this.props.navigation.getParam('item');
-            var room=this.props.navigation.getParam('room');
-            this.props.navigation.navigate('Breakfast',{item,room});
+            var hotel=this.props.navigation.getParam('hotel');
+          
+            this.props.navigation.navigate('Breakfast',{hotel});
         }
         else{
             console.log(opt);
-            var item=this.props.navigation.getParam('item');
-            var room=this.props.navigation.getParam('room');
-            this.props.navigation.navigate('Room',{item,room});
+            var hotel=this.props.navigation.getParam('hotel');
+            console.log(hotel);
+            this.props.navigation.navigate('Room',{hotel});
         }
         
 
@@ -57,14 +57,21 @@ export default class OptionScreen extends React.Component {
               <TouchableHighlight
                 style={{ ...styles.openButton, backgroundColor: "orange" }}
                 onPress={() => pressHandler("Menu")}                  >
+                  <View styles={styles.container}>
+                
                 {/* sIq3ADHz */}
-                <Text style={styles.textStyle}>Check Out the Menu! </Text>
+                <Text style={styles.textStyle}>Menu! </Text>
+                <Image style={styles.photoStyle} source={require('../../../assets/menus.png')} />
+                </View>
               </TouchableHighlight>
               <TouchableHighlight
                 style={{ ...styles.openButton2, backgroundColor: "darkcyan" }}
                 onPress={() => pressHandler("Room")}                  >
+                  <View styles={styles.container}>
                 {/* sIq3ADHz */}
-                <Text style={styles.textStyle}>Check Out Rooms! </Text>
+                <Text style={styles.textStyle}>Rooms! </Text>
+                <Image style={styles.photoStyle} source={require('../../../assets/rooms.png')} />
+                </View>
               </TouchableHighlight>
             
           </View>

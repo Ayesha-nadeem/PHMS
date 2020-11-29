@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { withTheme } from 'react-native-elements';
 import { RecipeCard } from '../../AppStyles';
 
 const styles = StyleSheet.create({
@@ -13,21 +14,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 22
   },
-
   openButton: {
     backgroundColor: "#F194FF",
     borderRadius: 20,
     padding: 10,
-    height: 140,
+    height: 200,
     width:260,
-    marginTop:400,
+    marginTop:500,
     elevation: 2
   },
   openButton2: {
     backgroundColor: "#F194FF",
     borderRadius: 20,
     padding: 10,
-    height: 140,
+    height: 200,
     width:260,
     marginTop:20,
     elevation: 2
@@ -36,9 +36,20 @@ const styles = StyleSheet.create({
     color: "white",
     textShadowColor:"black",
     textShadowRadius:3,
+    height: 60,
     fontWeight: "bold",
-    fontSize:35,
+    fontSize:30,
     textAlign: "center"
+  },
+  photoStyle:
+  {
+    backgroundColor:"white",
+    alignItems: "flex-end",
+    borderWidth:2,
+    borderRadius: 20,
+    marginLeft:60,
+    height: 120,
+    width: 120
   }
 });
 
