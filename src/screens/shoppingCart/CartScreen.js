@@ -64,7 +64,6 @@ class CartScreen extends Component {
         );
     }
 }
-
 const mapStateToProps = (state) => {
     return {
         cartItems: state

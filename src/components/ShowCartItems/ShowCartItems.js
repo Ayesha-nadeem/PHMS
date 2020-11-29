@@ -52,19 +52,26 @@ const ShowCartItems=(props)=> {
     renderMenu = ({ item }) => (
       
           <View style={{flexDirection:'row' ,justifyContent:'space-around' , padding:5,alignItems:'center'}}>
-          <View style={{justifyContent:'space-around' ,alignItems:'center',flex:2}}>
+          <View style={{justifyContent:'space-around' ,alignItems:'center',flex:4}}>
             <Text style={{fontWeight:'bold'}}>{item.name}</Text> 
         </View>
-        <View style={{justifyContent:'space-around' , alignItems:'center',flex:1}}>
-            <Text >{item.count}</Text> 
-            </View>
+        <View style={{justifyContent:'space-around' , alignItems:'center',flex:4}}>
+        <View style={{flexDirection:'row' ,justifyContent:'space-between' , padding:5,alignItems:'center'}}>
+        <Icon name="ios-remove-circle" size={30} color="#900" onPress={() => props.onPress(item)}/>
+        <Text >{item.count}</Text> 
+        <Icon name="ios-add-circle" size={30} color="green" />
+        </View>
+        </View>
             <View style={{justifyContent:'space-around' , alignItems:'center' , flex:2 }}>
             <Button title="Remove" color="red" onPress={() => props.onPress(item)}/>
           </View>
           </View>
       );
         return (
-            <View>          
+            <View> 
+            <View style={{justifyContent:'space-around' , alignItems:'center', marginVertical:20 }}>
+            <Text style={{fontWeight:'bold', fontSize:20}}>Cart Items</Text> 
+            </View>        
             <FlatList
             vertical
             showsVerticalScrollIndicator={false}
