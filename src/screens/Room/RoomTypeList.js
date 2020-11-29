@@ -47,9 +47,14 @@ export default class RoomTypeList extends React.Component {
   renderRecipes = ({ item }) => (
    
   
+<<<<<<< HEAD
     <TouchableHighlight underlayColor='rgba(73,182,77,1,0.9)'  onPress={() => {  
     var hotel=this.props.navigation.getParam('hotel');
     console.log(hotel);
+=======
+    <TouchableHighlight underlayColor='rgba(73,182,77,1,0.9)'  onPress={() => {  var hotel=this.props.navigation.getParam('item');
+    //var room=this.props.navigation.getParam('room');
+>>>>>>> 78b0650e758ad318e4f331296dfc912f22f6cc9f
     var rt= item.id;
     this.setState({
       hotelid: hotel,

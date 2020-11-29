@@ -202,24 +202,24 @@ const Example = (params) => {
   };
  const postdata = () => {
     try{
-      console.log(params.navigation.state.params.room[0].hotel_id)
-      console.log(params.navigation.state.params.room[0].id)
-      console.log(cars)
-      console.log(timestart)
-       fetch('http://192.168.100.3:8000/Orders/',{
-        method:'post',
-        mode:'no-cors',
-        headers:{
-          'Accept':'application/json',
-          'Content-type':'application/json',
-        },
-        body:JSON.stringify({
-          hotel_id:params.navigation.state.params.room[0].hotel_id,
-          room_id:params.navigation.state.params.room[0].id,
-          menu_items:cars,
-        })
+      // console.log(params.navigation.state.params.room[0].hotel_id)
+      // console.log(params.navigation.state.params.room[0].id)
+      // console.log(cars)
+      // console.log(timestart)
+      //  fetch('http://82.165.158.88/Orders/',{
+      //   method:'post',
+      //   mode:'no-cors',
+      //   headers:{
+      //     'Accept':'application/json',
+      //     'Content-type':'application/json',
+      //   },
+      //   body:JSON.stringify({
+      //     hotel_id:params.navigation.state.params.room[0].hotel_id,
+      //     room_id:params.navigation.state.params.room[0].id,
+      //     menu_items:cars,
+      //   })
 
-      });
+      // });
       Alert.alert(
         "Order",
         "You order has been placed for time slot"+JSON.stringify(timestart)+"------"+JSON.stringify(timeend),

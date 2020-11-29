@@ -46,7 +46,7 @@ class Products extends Component {
            
             <TouchableOpacity  style={styles.ProductButton} onPress={() => this.props.onPress(item)}>
             <Icon name="ios-cart" size={22}  style={styles.ProductbuttonIcon}/>
-            <Text  style={styles.Productbuttontitle}>add to cart</Text></TouchableOpacity>
+    <Text  style={styles.Productbuttontitle}>{this.props.buttonName}</Text></TouchableOpacity>
             {/* <Text style={styles.categoriesName}>{this.props.hotel}</Text> */}
             {/* <Text style={styles.categoriesName}>{this.props.room}</Text> */}
             {/* <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text> */}

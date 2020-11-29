@@ -140,8 +140,9 @@ class Menu extends React.Component{
 // {
 // this.setState({x:hotelCategories[0]['id']});
 // }
+//room={this.props.navigation.getParam('room')}
 let s=null
-s=(<Items id={this.state.x} hotel={this.props.navigation.getParam('item')} room={this.props.navigation.getParam('room')}/>)
+s=(<Items id={this.state.x} hotel={this.props.navigation.getParam('item')} />)
 
 
 
