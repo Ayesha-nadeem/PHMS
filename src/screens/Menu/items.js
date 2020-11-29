@@ -108,14 +108,15 @@ class Items extends React.Component{
         // onPress={this.props.addItemToCart}
         //console.log(this.state.dataSource.filter(d => d.category_id===this.props.navigation.getParam('category').id))
        // console.log(this.props.navigation.getParam('room'))
-        var i;
-        for (i = 0; i < this.state.dataSource.length; i++) {
-          this.state.dataSource[i]['room']=this.props.room;
-        }
+       // var i;
+        // for (i = 0; i < this.state.dataSource.length; i++) {
+        //   this.state.dataSource[i]['room']=this.props.room;
+        // }
+        //room={this.props.room}
         console.log(this.state.dataSource,"Products")
         return (
             <View>
-                <Products products={this.state.dataSource.filter(d => d.category_id===this.props.id)} onPress={this.props.addItemToCart} room={this.props.room}/>
+                <Products products={this.state.dataSource.filter(d => d.category_id===this.props.id)} onPress={this.props.addItemToCart} buttonName={"add to cart"}/>
 
             </View>
         );
