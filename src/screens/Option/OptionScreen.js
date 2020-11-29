@@ -37,7 +37,6 @@ export default class OptionScreen extends React.Component {
         if (opt=="Menu")
         {
             console.log(opt);
-<<<<<<< HEAD
             var hotel=this.props.navigation.getParam('hotel');
           
             this.props.navigation.navigate('Breakfast',{hotel});
@@ -47,17 +46,6 @@ export default class OptionScreen extends React.Component {
             var hotel=this.props.navigation.getParam('hotel');
             console.log(hotel);
             this.props.navigation.navigate('Room',{hotel});
-=======
-            var item=this.props.navigation.getParam('item');
-            //var room=this.props.navigation.getParam('room');
-            this.props.navigation.navigate('Breakfast',{item});
-        }
-        else{
-            console.log(opt);
-            var item=this.props.navigation.getParam('item');
-            //var room=this.props.navigation.getParam('room');
-            this.props.navigation.navigate('Room',{item});
->>>>>>> 78b0650e758ad318e4f331296dfc912f22f6cc9f
         }
         
 
