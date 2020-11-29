@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import { Image,Text,TextInput,StyleSheet,Button, View,Modal,TouchableHighlight,FlatList,Alert} from "react-native";
-import DateTimePickerModal from "react-native-modal-datetime-picker";
-import RNPickerSelect from 'react-native-picker-select';
+
 
  
 const Example = (params) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const [timestart, settimestart] = useState("Select You Time Slot");
+  const [timestart, settimestart] = useState("");
   const [timeend, settimeend] = useState("");
-  // var timestart;
-  // var timeend=null;
   var cars=[];
  
   const showDatePicker = () => {
@@ -202,33 +199,34 @@ const Example = (params) => {
   };
  const postdata = () => {
     try{
-      // console.log(params.navigation.state.params.room[0].hotel_id)
-      // console.log(params.navigation.state.params.room[0].id)
-      // console.log(cars)
-      // console.log(timestart)
-      //  fetch('http://82.165.158.88/Orders/',{
-      //   method:'post',
-      //   mode:'no-cors',
-      //   headers:{
-      //     'Accept':'application/json',
-      //     'Content-type':'application/json',
-      //   },
-      //   body:JSON.stringify({
-      //     hotel_id:params.navigation.state.params.room[0].hotel_id,
-      //     room_id:params.navigation.state.params.room[0].id,
-      //     menu_items:cars,
-      //   })
-
-      // });
+      if(timestart!="")
+      {
       Alert.alert(
         "Order",
         "You order has been placed for time slot"+JSON.stringify(timestart)+"------"+JSON.stringify(timeend),
         [
 
-          { text: "OK", onPress: () => params.navigation.navigate("Home") }
+          { text: "OK", onPress: () => {
+            params.navigation.navigate("Home") 
+             
+          }}
         ],
         { cancelable: false }
       );
+      }
+      else
+      {
+        Alert.alert(
+          "No Time Slot Slected",
+          "Please Select a time slot ",
+          [
+  
+            { text: "OK" }
+          ],
+          { cancelable: false }
+        );
+        }
+  
   
     }catch(e){
       console.log(e)
@@ -239,16 +237,7 @@ const Example = (params) => {
   for (i = 0; i < params.navigation.state.params.items.length; i++) {
     cars[i]=params.navigation.state.params.items[i]['id'];
   }
-  // console.log(params.navigation.state.params.items)
-  console.log(cars)
-  // console.log(timestart)
-  // function Item({ title }) {
-  //   return (
-  //     <View style={styles.item}>
-  //       <Text style={styles.title}>{title}</Text>
-  //     </View>
-  //   );
-  // }
+ 
   console.log(timestart)
   return (
     <View style={stylee.container}>
@@ -257,7 +246,8 @@ const Example = (params) => {
         source={require('../../../assets/icons/cal.png')}
       />
       <Text style = {stylee.text} onPress={timeslot}>
-      {timestart}--{timeend}
+      {timestart!="" ? timestart + " --- " + timeend : "Select Your Time Slot"}
+      
       </Text>
       <Modal
         animationType="slide"
@@ -285,7 +275,6 @@ const Example = (params) => {
                 
               }} >
               <View>
-                {/* <Image style={styles.photo} source={{ uri: item.photo_url }} /> */}
               <Text style = {{marginRight:30,
               marginBottom:10,
               marginLeft:40,
@@ -300,7 +289,6 @@ const Example = (params) => {
               borderColor: '#fff',
               color:"#fff",
               }}>  {item.start}----{item.end}    </Text>
-                {/* <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text> */}
               </View>
             </TouchableHighlight>}
               keyExtractor={item => `${item.recipeId}`}
@@ -317,52 +305,7 @@ const Example = (params) => {
           </View>
         </View>
       </Modal>
-      {/* /* <Button
-      style={{color: 'red', marginTop: 10, padding: 10}}
-      color="#FFA701"
-      title="Button with icon component" 
-      style={styleButton.container} title="Select Time" onPress={showDatePicker} /> */}
-      {/* <TextInput
-          placeholder="Enter Number Of Persons"  
-          underlineColorAndroid='transparent'  
-          style={styles.TextInputStyle}  
-          keyboardType={'numeric'}  
-      />  
-      <DateTimePickerModal
-        isVisible={isDatePickerVisible}
-        mode="time"
-        onConfirm={handleConfirm}
-        onCancel={hideDatePicker}
-      />
-      <RNPickerSelect
-            placeholder={{}}
-            onValueChange={(value) => console.log(value)}
-            items={[
-              { label: 'Select Hall', value: 'Select Table' },
-              { label: '2', value: '2', },
-              { label: '4', value: '4' },
-              { label: '6', value: '6' },
-              
-          ]}
-            InputAccessoryView={() => null}
-            style={pickerSelect}
-            
-          />
-     
-        <RNPickerSelect
-            placeholder={{}}
-            onValueChange={(value) => console.log(value)}
-            items={[
-              { label: 'Select Table', value: 'Select Table' },
-              { label: '2', value: '2', },
-              { label: '4', value: '4' },
-              { label: '6', value: '6' },
-              
-          ]}
-            InputAccessoryView={() => null}
-            style={pickerSelectStyles}
-            
-          /> */}
+    
         <Text style = {stylee.text1} onPress={postdata}>
          Submit
       </Text>

@@ -7,6 +7,8 @@ import {
 } from "react-native";
 import Products from '../Menu/Products'
 import { connect } from 'react-redux'
+import ShowCartItems from '../../components/ShowCartItems/ShowCartItems'
+
 
 class CartScreen extends Component {
     // var i;
@@ -49,13 +51,15 @@ class CartScreen extends Component {
         return (
             <View style={styles.container}>
                 {this.props.cartItems.length > 0 ?
-                    <Products
+                    <ShowCartItems
                         onPress={this.props.removeItem}
                         products={this.props.cartItems}
                         buttonName={"remove"} />
                     : <Text>No items in your cart</Text>
                 }
-                <Button onPress={() => this.props.navigation.navigate('Time',{items,timeslots})} title="Confirm Order" color="red" />
+                <View style={{ justifyContent:'center', alignItems:'center', margin:30}}>               
+                <Button onPress={() => this.props.navigation.navigate('Time',{items,timeslots})} title="Confirm Order"  />
+            </View>
             </View>
         );
     }
