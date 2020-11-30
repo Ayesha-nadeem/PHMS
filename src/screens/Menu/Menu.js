@@ -98,15 +98,17 @@ class Menu extends React.Component{
                 dataSource:responseJson,
                
             })
- 
+
             this.setState({
-                hotelCategories:this.state.dataSource.filter(d => d.hotel_id===this.props.navigation.getParam('item')),
+                hotelCategories:this.state.dataSource.filter(d => d.hotel_id===this.props.navigation.getParam('hotel')),
             })
+            //Alert.alert("Modal has been closed."+this.state.hotelCategories+"");
+
             this.setState({
                 x:this.state.hotelCategories[0]['id'],
             })
+
            console.log(this.state.hotelCategories)
-            // Alert.alert("Modal has been closed."+this.state.x+"");
         })
 
     }
@@ -117,7 +119,7 @@ class Menu extends React.Component{
             var category = item;
             var hotel=this.props.navigation.getParam('item');
            // var room=this.props.navigation.getParam('room');
-           // Alert.alert("Modal has been closed."+item.id+"");
+          // Alert.alert("Modal has been closed."+item.id+"");
              this.setState({x:item.id});
              this.setState({flag:false});
 
@@ -142,7 +144,7 @@ class Menu extends React.Component{
 // }
 //room={this.props.navigation.getParam('room')}
 let s=null
-s=(<Items id={this.state.x} hotel={this.props.navigation.getParam('item')} />)
+s=(<Items id={this.state.x} hotel={this.props.navigation.getParam('hotel')} />)
 
 
 
@@ -161,7 +163,7 @@ s=(<Items id={this.state.x} hotel={this.props.navigation.getParam('item')} />)
                 // vertical
                 // showsVerticalScrollIndicator={false}
                 // numColumns={1}
-                data={this.state.dataSource.filter(d => d.hotel_id===this.props.navigation.getParam('item'))}
+                data={this.state.dataSource.filter(d => d.hotel_id===this.props.navigation.getParam('hotel'))}
                 renderItem={this.renderCategory}
                 keyExtractor={(item) => item.id}
                 />

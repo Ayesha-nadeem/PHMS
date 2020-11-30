@@ -53,9 +53,9 @@ export default class OptionScreen extends React.Component {
     }
     return (
       <View>
-     <View>
+     {/* <View>
         <SlideShow/>
-        </View>
+        </View> */}
           <View style={styles.centeredView}>
               <TouchableHighlight
                 style={{ ...styles.openButton, backgroundColor: "orange" }}

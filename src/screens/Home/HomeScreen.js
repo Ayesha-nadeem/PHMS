@@ -65,7 +65,7 @@ export default class HomeScreen extends React.Component {
        this.setState({hotelname:item.name,hotelid:item.id});
       var hotel = item.id;
       console.log(hotel);
-      Alert.alert("homescreen"+hotel+"");
+      //Alert.alert("homescreen"+hotel+"");
 
       this.props.navigation.navigate('Option',{hotel});
   
