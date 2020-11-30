@@ -7,8 +7,11 @@ import {
 } from "react-native";
 import styles from './styles';
 import Icon from 'react-native-vector-icons/Ionicons'
+import {useDispatch} from 'react-redux'
+
 
 const ShowCartItems=(props)=> {
+  const dispatch= useDispatch();
   var dummyArray=[];
   const isExists=(dummyArray,currentId)=>
     {
@@ -20,6 +23,19 @@ const ShowCartItems=(props)=> {
         }
       }
       return false
+    }
+    const addToCart=(currentId)=>{
+      let i;
+      for(i=0;i<props.products.length;i++)
+      {
+        if(props.products[i].id === currentId)
+        {
+          const product=props.products[i];
+          console.log("saira id= "+ product.id)
+          dispatch({ type: 'ADD_TO_CART', payload: product })
+          break;
+        }
+      }
     }
   // console.log("dummyid = "+ updateItemCount[0].id + " dummycount = "+updateItemCount[0].count )
   let i=0;
@@ -57,9 +73,9 @@ const ShowCartItems=(props)=> {
         </View>
         <View style={{justifyContent:'space-around' , alignItems:'center',flex:4}}>
         <View style={{flexDirection:'row' ,justifyContent:'space-between' , padding:5,alignItems:'center'}}>
-        <Icon name="ios-remove-circle" size={30} color="#900" onPress={() => props.onPress(item)}/>
+        <Icon name="ios-remove-circle" size={30} color="#900" />
         <Text >{item.count}</Text> 
-        <Icon name="ios-add-circle" size={30} color="green" />
+        <Icon name="ios-add-circle" size={30} color="green" onPress={()=>addToCart(item.id)} />
         </View>
         </View>
             <View style={{justifyContent:'space-around' , alignItems:'center' , flex:2 }}>
