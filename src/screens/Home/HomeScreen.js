@@ -63,8 +63,10 @@ export default class HomeScreen extends React.Component {
     <TouchableHighlight underlayColor='rgba(73,182,77,1,0.9)' onPress={() => 
       {
        this.setState({hotelname:item.name,hotelid:item.id});
-      var hotel = this.state.hotelid;
+      var hotel = item.id;
       console.log(hotel);
+      Alert.alert("homescreen"+hotel+"");
+
       this.props.navigation.navigate('Option',{hotel});
   
   } }>
