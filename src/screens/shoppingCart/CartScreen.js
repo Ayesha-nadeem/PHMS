@@ -3,7 +3,8 @@ import {
     View,
     Text,
     StyleSheet,
-    Button
+    Button,
+    Alert
 } from "react-native";
 import Products from '../Menu/Products'
 import { connect } from 'react-redux'
@@ -58,7 +59,21 @@ class CartScreen extends Component {
                     : <Text>No items in your cart</Text>
                 }
                 <View style={{ justifyContent:'center', alignItems:'center', margin:30}}>               
-                <Button onPress={() => this.props.navigation.navigate('Time',{items,timeslots})} title="Confirm Order"  />
+                <Button onPress={() => 
+                {
+                this.props.cartItems.length > 0 ?
+                this.props.navigation.navigate('Time',{items,timeslots}):
+                Alert.alert(
+                "No items in your cart",
+                 "Please Select at least one item from menu section",
+                 [
+  
+                 { text: "OK" }
+                 ],
+                 { cancelable: false }
+                 );
+                }
+                } title="Confirm Order"  />
             </View>
             </View>
         );

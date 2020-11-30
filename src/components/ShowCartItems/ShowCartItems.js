@@ -31,13 +31,26 @@ const ShowCartItems=(props)=> {
         if(props.products[i].id === currentId)
         {
           const product=props.products[i];
-          console.log("saira id= "+ product.id)
           dispatch({ type: 'ADD_TO_CART', payload: product })
           break;
         }
       }
     }
-  // console.log("dummyid = "+ updateItemCount[0].id + " dummycount = "+updateItemCount[0].count )
+    const removeFromCart=(currentId)=>{
+      let i;
+      for(i=0;i<props.products.length;i++)
+      {
+        if(props.products[i].id === currentId)
+        {
+          const product=props.products[i];
+          
+
+          dispatch({ type: 'REMOVE_ONE_ITEM_FROM_CART', payload: product })
+          break;
+        }
+      }
+    }
+
   let i=0;
   let j=0;
   for(i=0;i<props.products.length ; i=i+1)
@@ -46,7 +59,7 @@ const ShowCartItems=(props)=> {
     let item=props.products[i].id;  
     if(!isExists(dummyArray,item))
     {       
-        console.log("item = "+ item)
+        // console.log("products = "+ props.products)
         for(j=0;j<props.products.length;j++)
       {
         if(item==props.products[j].id)
@@ -73,7 +86,7 @@ const ShowCartItems=(props)=> {
         </View>
         <View style={{justifyContent:'space-around' , alignItems:'center',flex:4}}>
         <View style={{flexDirection:'row' ,justifyContent:'space-between' , padding:5,alignItems:'center'}}>
-        <Icon name="ios-remove-circle" size={30} color="#900" />
+        <Icon name="ios-remove-circle" size={30} color="#900" onPress={()=>removeFromCart(item.id)}/>
         <Text >{item.count}</Text> 
         <Icon name="ios-add-circle" size={30} color="green" onPress={()=>addToCart(item.id)} />
         </View>
