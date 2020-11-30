@@ -24,6 +24,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 22
   },
+  homescreen:{
+    backgroundColor:'#ffffff',
+  },
   modalView: {
     margin: 20,
     backgroundColor: "white",

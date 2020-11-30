@@ -1,11 +1,12 @@
 import React, { Component }  from 'react';
 import {TextInput, Alert,Modal,FlatList, ScrollView, Text, View, TouchableHighlight, Image } from 'react-native';
 import styles from './styles';
-import { recipes } from '../../data/dataArrays';
+//import { recipes } from '../../data/dataArrays';
 import MenuImage from '../../components/MenuImage/MenuImage';
 import DrawerActions from 'react-navigation';
-import { getCategoryName } from '../../data/MockDataAPI';
+//import { getCategoryName } from '../../data/MockDataAPI';
 import ShoppingCartIcon from '../../screens/shoppingCart/shoppingCart';
+import SlideShow from '../../components/SlideShow'
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -73,7 +74,7 @@ export default class HomeScreen extends React.Component {
     
     const { modalVisible } = this.state;
     return (
-      <View>
+      <View style={styles.homescreen}>
         <Modal
           animationType="slide"
           transparent={true}

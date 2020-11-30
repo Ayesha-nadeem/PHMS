@@ -22,16 +22,16 @@ export default class DrawerContainer extends React.Component {
             title="Explore Hotels"
             source={require('../../../assets/icons/category.png')}
             onPress={() => {
-              navigation.navigate('Categories');
-              navigation.closeDrawer();
+              // navigation.navigate('Categories');
+              // navigation.closeDrawer();
             }}
           />
           <MenuButton
             title="SEARCH"
             source={require('../../../assets/icons/search.png')}
             onPress={() => {
-              navigation.navigate('Search');
-              navigation.closeDrawer();
+              // navigation.navigate('Search');
+              // navigation.closeDrawer();
             }}
           />
         </View>

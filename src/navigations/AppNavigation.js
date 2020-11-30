@@ -16,13 +16,13 @@ import HomeScreen from '../screens/Home/HomeScreen';
 import Example from '../screens/timepicker/time';
 import Items from '../screens/Menu/items';
 import Menu from '../screens/Menu/Menu';
-import CategoriesScreen from '../screens/Categories/CategoriesScreen';
-import RecipeScreen from '../screens/Recipe/RecipeScreen';
-import RecipesListScreen from '../screens/RecipesList/RecipesListScreen';
+// import CategoriesScreen from '../screens/Categories/CategoriesScreen';
+// import RecipeScreen from '../screens/Recipe/RecipeScreen';
+// import RecipesListScreen from '../screens/RecipesList/RecipesListScreen';
 import DrawerContainer from '../screens/DrawerContainer/DrawerContainer';
-import IngredientScreen from '../screens/Ingredient/IngredientScreen';
-import SearchScreen from '../screens/Search/SearchScreen';
-import IngredientsDetailsScreen from '../screens/IngredientsDetails/IngredientsDetailsScreen';
+// import IngredientScreen from '../screens/Ingredient/IngredientScreen';
+// import SearchScreen from '../screens/Search/SearchScreen';
+// import IngredientsDetailsScreen from '../screens/IngredientsDetails/IngredientsDetailsScreen';
 import ShoppingCartIcon from '../screens/shoppingCart/shoppingCart';
 import CartScreen from '../screens/shoppingCart/CartScreen';
 import MenuButton from '../components/MenuButton/MenuButton';
@@ -56,12 +56,12 @@ function MainNavigator() {
 const MainNavigator = createStackNavigator(
   {
     Home: HomeScreen,
-    Categories: CategoriesScreen,
-    Recipe: RecipeScreen,
-    RecipesList: RecipesListScreen,
-    Ingredient: IngredientScreen,
-    Search: SearchScreen,
-    IngredientsDetails: IngredientsDetailsScreen,
+    //Categories: CategoriesScreen,
+   // Recipe: RecipeScreen,
+   // RecipesList: RecipesListScreen,
+   // Ingredient: IngredientScreen,
+    //Search: SearchScreen,
+    //IngredientsDetails: IngredientsDetailsScreen,
     items:Items,
     Time:Example,
     Breakfast:Menu,
@@ -82,7 +82,7 @@ const MainNavigator = createStackNavigator(
     defaultNavigationOptions: ({ navigation }) => ({
       headerTitle: 'PHMS',
       headerRight: ()=><ShoppingCartIcon />,
-      
+     
             // <ShoppingCartIcon />,
       headerTitleStyle: {
         fontWeight: 'bold',

@@ -18,11 +18,9 @@ export default class SlideShow extends Component {
    
     render() {
       return (
-        <View style={styles.container}>
           <SliderBox
             images={this.state.images}          
           />
-        </View>
       );
     }
   }

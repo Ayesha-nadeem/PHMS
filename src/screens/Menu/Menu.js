@@ -71,7 +71,7 @@ import {
     StyleSheet,FlatList,TouchableHighlight,Image
 } from "react-native";
 
-import { books } from '../../data/menudata';
+//import { books } from '../../data/menudata';
 import Products from './Products'
 import { connect } from 'react-redux'
 import Items from './items';
@@ -116,7 +116,7 @@ class Menu extends React.Component{
         
             var category = item;
             var hotel=this.props.navigation.getParam('item');
-            var room=this.props.navigation.getParam('room');
+           // var room=this.props.navigation.getParam('room');
            // Alert.alert("Modal has been closed."+item.id+"");
              this.setState({x:item.id});
              this.setState({flag:false});

@@ -71,7 +71,7 @@ import {
     StyleSheet,FlatList,TouchableHighlight,Image
 } from "react-native";
 
-import { books } from '../../data/menudata';
+//import { books } from '../../data/menudata';
 import Products from './Products'
 import { connect } from 'react-redux'
 import styles from './styles';
