@@ -1,4 +1,8 @@
-const cartItems = (state = [], action) => {
+const INITIAL_STATE = {
+    loggedIn: true
+  }
+
+const cartItems = (state = [], action={}) => {
     switch (action.type) {
         case 'ADD_TO_CART':
             return [...state, action.payload]
@@ -11,8 +15,8 @@ const cartItems = (state = [], action) => {
                 return state.filter(cartItem => cartItem !== null)
 
             }
-            
-        
+        case 'RESET_CART':
+            return module.exports.default();           
     }
 
     return state

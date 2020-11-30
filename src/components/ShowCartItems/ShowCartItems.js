@@ -59,7 +59,6 @@ const ShowCartItems=(props)=> {
     let item=props.products[i].id;  
     if(!isExists(dummyArray,item))
     {       
-        // console.log("products = "+ props.products)
         for(j=0;j<props.products.length;j++)
       {
         if(item==props.products[j].id)
@@ -72,12 +71,9 @@ const ShowCartItems=(props)=> {
         id:item,
         count:count
       }]
-    //  console.log("dummyid = "+ dummyArray[i].id + " dummycount = "+dummyArray[i].count )
     }
   }
  
-  //console.log("dummyArray = "+dummyArray)
-
     renderMenu = ({ item }) => (
       
           <View style={{flexDirection:'row' ,justifyContent:'space-around' , padding:5,alignItems:'center'}}>
