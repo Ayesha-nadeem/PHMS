@@ -1,8 +1,6 @@
 import React, { Component }  from 'react';
 import { Alert,FlatList, ScrollView, Text, View, TouchableHighlight, Image } from 'react-native';
 import styles from './styles';
-
-
 export default class RoomTypeList extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'Room',
@@ -49,11 +47,12 @@ export default class RoomTypeList extends React.Component {
   renderRecipes = ({ item }) => (
    
   
-    <TouchableHighlight underlayColor='rgba(73,182,77,1,0.9)'  onPress={() => {  var hotel=this.props.navigation.getParam('item');
-    //var room=this.props.navigation.getParam('room');
+    <TouchableHighlight underlayColor='rgba(73,182,77,1,0.9)'  onPress={() => {  
+    var hotel=this.props.navigation.getParam('hotel');
+    console.log(hotel);
     var rt= item.id;
     this.setState({
-      hotelid: hotel.id,
+      hotelid: hotel,
       roomType:item.id,
   })
     this.props.navigation.navigate('Home',{rt,hotel});}} >
