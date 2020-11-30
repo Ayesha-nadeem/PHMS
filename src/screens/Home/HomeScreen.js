@@ -4,11 +4,7 @@ import styles from './styles';
 //import { recipes } from '../../data/dataArrays';
 import MenuImage from '../../components/MenuImage/MenuImage';
 import DrawerActions from 'react-navigation';
-<<<<<<< HEAD
-//import { getCategoryName } from '../../data/MockDataAPI';
-=======
-import { getCategoryName, getRecipesByRecipeName } from '../../data/MockDataAPI';
->>>>>>> 19bb2b6582964ae94e3b3c6803ed42613d500378
+
 import ShoppingCartIcon from '../../screens/shoppingCart/shoppingCart';
 import SlideShow from '../../components/SlideShow'
 
@@ -85,13 +81,9 @@ export default class HomeScreen extends React.Component {
     
    // const { modalVisible } = this.state;
     return (
-<<<<<<< HEAD
-      <View style={styles.homescreen}>
-        <Modal
-=======
+
       <View>
       { /* <Modal
->>>>>>> 19bb2b6582964ae94e3b3c6803ed42613d500378
           animationType="slide"
           transparent={true}
           visible={modalVisible}
