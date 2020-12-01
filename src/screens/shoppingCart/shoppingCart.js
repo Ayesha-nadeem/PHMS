@@ -19,6 +19,7 @@ const ShoppingCartIcon = (props) => (
         }}>
             <Text style={{ color: 'white', fontWeight: 'bold' }}>{props.cartItems.length}</Text>
         </View>
+
         <Icon onPress={() => props.navigation.navigate('Cart')} name="ios-cart" size={30} />
     </View>
 )
