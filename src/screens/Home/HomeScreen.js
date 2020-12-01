@@ -119,7 +119,7 @@ export default class HomeScreen extends React.Component {
                     
                 }}
               >
-                
+                hhhhh
                 <Text style={styles.textStyle}>Submit</Text>
               </TouchableHighlight>
             </View>
