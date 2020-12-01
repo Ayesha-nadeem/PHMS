@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Image,Text,TextInput,StyleSheet,Button, View,Modal,TouchableHighlight,FlatList,Alert} from "react-native";
+import {useDispatch} from 'react-redux'
 
 
  
@@ -9,7 +10,8 @@ const Example = (params) => {
   const [timestart, settimestart] = useState("");
   const [timeend, settimeend] = useState("");
   var cars=[];
- 
+  const dispatch= useDispatch();
+
   const showDatePicker = () => {
     setDatePickerVisibility(true);
   };
@@ -21,6 +23,9 @@ const Example = (params) => {
   const handleConfirm = (date) => {
     hideDatePicker();
   };
+  const resetCart=()=>{    
+        dispatch({ type: 'RESET_CART', payload:null})
+  }
   const pickerSelectStyles = StyleSheet.create({
     inputIOS: {
       marginRight:40,
@@ -207,6 +212,7 @@ const Example = (params) => {
         [
 
           { text: "OK", onPress: () => {
+            resetCart()
             params.navigation.navigate("Home") 
              
           }}
