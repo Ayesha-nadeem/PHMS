@@ -1,0 +1,32 @@
+from django.shortcuts import render
+from rest_framework import viewsets
+from .models import *
+from .serializers import *
+# Create your views here.
+
+class HotelsView(viewsets.ModelViewSet):
+    queryset=Hotels.objects.all()
+    serializer_class=HotelsSerializer
+
+    
+class CategoryView(viewsets.ModelViewSet):
+    queryset=Category.objects.all()
+    serializer_class=CategorySerializer
+
+
+class ItemView(viewsets.ModelViewSet):
+    queryset=Item.objects.all()
+    serializer_class=ItemSerializer
+
+class TimeSlotView(viewsets.ModelViewSet):
+    queryset=TimeSlot.objects.all()
+    serializer_class=TimeSlotSerializer
+
+class OrdersView(viewsets.ModelViewSet):
+    queryset=Orders.objects.all()
+    serializer_class=OrdersSerializer
+
+
+class RoomView(viewsets.ModelViewSet):
+    queryset=Room.objects.all()
+    serializer_class=RoomSerializer

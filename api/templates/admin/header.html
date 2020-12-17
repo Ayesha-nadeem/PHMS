@@ -1,0 +1,81 @@
+{% load i18n static %}
+
+<header id="header" class="header">
+    <div class="top-left">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="./"><img src="" alt="Logo" style="height:45px;"></a>
+            <a class="navbar-brand hidden" href="./"><img src="/static/images/logo2.png" alt="Logo"></a>
+            <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+        </div>
+    </div>
+    <div class="top-right">
+        <div class="header-menu">
+            <div class="header-left">
+                {% if user.is_superuser == False%}  
+                <div class="dropdown for-notification">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-bell"></i>
+                        <span class="count bg-danger">0</span>
+                    </button>
+                    <div class="dropdown-menu notification" aria-labelledby="notification">
+                        <a class="dropdown-item media" href="#">
+                            <!-- <i class="fa fa-check"></i> -->
+                            <p class="no-notification">No Notification</p>
+                        </a>
+                    </div>
+                </div>
+                {%endif%}
+            </div>
+
+            <div class="user-area dropdown float-right">
+                <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="user-avatar rounded-circle" src="" alt="User Avatar">
+                </a>
+
+                <div class="user-menu dropdown-menu">
+                    <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a> -->
+
+                    <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a> -->
+
+                    <!-- <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a> -->
+
+                    <a class="nav-link" href="{% url 'admin:logout' %}"><i class="fa fa-power -off"></i>Logout</a>
+                </div>
+            </div>
+            <input type="hidden" name="count" id="count" value="0">
+            <input type="hidden" name="count" id="not-count" value="0">
+        </div>
+    </div>
+</header>
+<script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+<script src="{% static 'assets/js/main.js'%}"></script>
+
+<script type="text/javascript">
+    (function worker() {
+    jQuery.ajax({
+        url: '/admin/checkNotification', 
+        success: function(data) {
+          // $('.result').html(data);
+          // console.log(data)
+          if(jQuery('#not-count').val() == 0){
+            jQuery('#count').val(data["count"]);
+            jQuery('#not-count').val(1);
+          }
+          if (jQuery('#count').val() != data["count"]) {
+            jQuery('.no-notification').remove()
+            jQuery( ".notification" ).append( '<a class="dropdown-item media" href="#"><i class="fa fa-check"></i><p class="new-notification">You have a new order from room '+data["room"]+'.</p></a>' );
+            jQuery('#count').val(data["count"]);
+            value = jQuery('#not-count').val();
+            jQuery('.count').html(value);
+            value = parseInt(value) + 1;
+            jQuery('#not-count').val(value);
+          }
+
+        },
+        complete: function() {
+          // Schedule the next request when the current one's complete
+          setTimeout(worker, 5000);
+        }
+    });
+    })();
+</script>
