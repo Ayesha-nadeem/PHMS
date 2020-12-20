@@ -11,6 +11,9 @@ router.register('Room',views.RoomView,'Room')
 router.register('Orders',views.OrdersView,'Orders')
 urlpatterns = [
     path('',include(router.urls)),
+    path("register", views.register, name="register"),
+    path("login",views.login, name="login"),
+    path("logout",views.logout,name="logout"),
     path('admin/home', views.home), 
 
 

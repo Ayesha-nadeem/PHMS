@@ -4,8 +4,9 @@ from .models import *
 from .serializers import *
 from django.http import HttpResponse
 from .forms import *
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,auth
 from django.http import JsonResponse
+from django.contrib import messages
 # Create your views here.
 
 class HotelsView(viewsets.ModelViewSet):
@@ -34,6 +35,52 @@ class OrdersView(viewsets.ModelViewSet):
 class RoomView(viewsets.ModelViewSet):
     queryset=Room.objects.all()
     serializer_class=RoomSerializer
+    
+
+def login(request):
+    if request.method== 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = auth.authenticate(username=username,password=password)
+
+        if user is not None:
+            auth.login(request, user)
+            return JsonResponse({'valid':True})
+        else:
+            #messages.info(request,'invalid credentials')
+            return JsonResponse({'valid':False})
+
+def register(request):
+
+    if request.method == 'POST':
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        username = request.POST['username']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+        email = request.POST['email']
+
+        if password1==password2:
+            if User.objects.filter(username=username).exists():
+               #messages.info(request,'Username Taken')
+                return JsonResponse({'valid':False,'exist':True})
+            elif User.objects.filter(email=email).exists():
+                #messages.info(request,'Email Taken')
+                return JsonResponse({'valid':False,'exist':True})
+            else:   
+                user = User.objects.create_user(username=username, password=password1, email=email,first_name=first_name,last_name=last_name)
+                user.save();
+                print('user created')
+                return JsonResponse({'valid':True,'exist':False})
+
+        else:
+            #messages.info(request,'password not matching..')    
+            return JsonResponse({'valid':False,'exist':False})
+
+def logout(request):
+    auth.logout(request)
+    return JsonResponse({'valid':True})
 
 def home(request):
     selected_opt = 0
