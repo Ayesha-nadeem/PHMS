@@ -13,18 +13,28 @@ import { passwordValidator } from '../helpers/passwordValidator'
 import { nameValidator } from '../helpers/nameValidator'
 
 const RegisterScreen = ({ navigation }) => {
-  const [name, setName] = useState({ value: '', error: '' })
+  const [first_name, setFirstName] = useState({ value: '', error: '' })
+  const [Last_name, setLastName] = useState({ value: '', error: '' })
+  const [user_name, setUserName] = useState({ value: '', error: '' })
   const [email, setEmail] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
+  const [confirm_password, setConfirmPassword] = useState({ value: '', error: '' })
 
   const onSignUpPressed = () => {
-    const nameError = nameValidator(name.value)
+    const first_nameError = nameValidator(first_name.value)
+    const Last_nameError = nameValidator(Last_name.value)
+    const user_nameError = nameValidator(user_name.value)
     const emailError = emailValidator(email.value)
     const passwordError = passwordValidator(password.value)
-    if (emailError || passwordError || nameError) {
-      setName({ ...name, error: nameError })
+    const confirm_passwordError = passwordValidator(password.value)
+ 
+    if (emailError || passwordError || first_nameError|| Last_name.value|| user_name.value) {
+      setFirstName({ ...first_name, error: first_nameError })
+      setLastName({ ...Last_name, error: Last_nameError })
+      setUserName({ ...user_name, error: user_nameError})
       setEmail({ ...email, error: emailError })
       setPassword({ ...password, error: passwordError })
+      setConfirmPassword({ ...confirm_password, error: confirm_passwordError })
       return
     }
     else{
@@ -38,12 +48,28 @@ const RegisterScreen = ({ navigation }) => {
       <Logo />
       <Header>Create Account</Header>
       <TextInput
-        label="Name"
+        label="First Name"
         returnKeyType="next"
-        value={name.value}
-        onChangeText={(text) => setName({ value: text, error: '' })}
-        error={!!name.error}
-        errorText={name.error}
+        value={first_name.value}
+        onChangeText={(text) => setFirstName({ value: text, error: '' })}
+        error={!!first_name.error}
+        errorText={first_name.error}
+      />
+      <TextInput
+        label="Last Name"
+        returnKeyType="next"
+        value={Last_name.value}
+        onChangeText={(text) => setLastName({ value: text, error: '' })}
+        error={!!Last_name.error}
+        errorText={Last_name.error}
+      />
+      <TextInput
+        label="User Name"
+        returnKeyType="next"
+        value={user_name.value}
+        onChangeText={(text) => setUserName({ value: text, error: '' })}
+        error={!!user_name.error}
+        errorText={user_name.error}
       />
       <TextInput
         label="Email"
@@ -64,6 +90,15 @@ const RegisterScreen = ({ navigation }) => {
         onChangeText={(text) => setPassword({ value: text, error: '' })}
         error={!!password.error}
         errorText={password.error}
+        secureTextEntry
+      />
+       <TextInput
+        label="Confirm Password"
+        returnKeyType="done"
+        value={confirm_password.value}
+        onChangeText={(text) => setConfirmPassword({ value: text, error: '' })}
+        error={!!confirm_password.error}
+        errorText={confirm_password.error}
         secureTextEntry
       />
       <Button
