@@ -16,6 +16,10 @@ import HomeScreen from '../screens/Home/HomeScreen';
 import Example from '../screens/timepicker/time';
 import Items from '../screens/Menu/items';
 import Menu from '../screens/Menu/Menu';
+import StartScreen from '../screens/StartScreen';
+import LoginScreen from '../screens/LoginScreen';
+import RegisterScreen from '../screens/RegisterScreen';
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 // import CategoriesScreen from '../screens/Categories/CategoriesScreen';
 // import RecipeScreen from '../screens/Recipe/RecipeScreen';
 // import RecipesListScreen from '../screens/RecipesList/RecipesListScreen';
@@ -26,6 +30,7 @@ import DrawerContainer from '../screens/DrawerContainer/DrawerContainer';
 import ShoppingCartIcon from '../screens/shoppingCart/shoppingCart';
 import CartScreen from '../screens/shoppingCart/CartScreen';
 import MenuButton from '../components/MenuButton/MenuButton';
+
 import OptionScreen from '../screens/Option/OptionScreen';
 import RoomTypeList from '../screens/Room/RoomTypeList';
 /* const Stack = createStackNavigator();
@@ -56,6 +61,10 @@ function MainNavigator() {
 const MainNavigator = createStackNavigator(
   {
     Home: HomeScreen,
+    StartScreen:StartScreen,
+    LoginScreen:LoginScreen,
+    RegisterScreen:RegisterScreen,
+    ForgotPasswordScreen:ForgotPasswordScreen,
     //Categories: CategoriesScreen,
    // Recipe: RecipeScreen,
    // RecipesList: RecipesListScreen,
@@ -77,7 +86,7 @@ const MainNavigator = createStackNavigator(
   //       )
   //   })},
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'StartScreen',
     // headerMode: 'float',
     defaultNavigationOptions: ({ navigation }) => ({
       headerTitle: 'PHMS',
