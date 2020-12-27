@@ -11,6 +11,7 @@ import { theme } from '../core/theme'
 import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 import { nameValidator } from '../helpers/nameValidator'
+import { ScrollView } from 'react-native-gesture-handler'
 
 const RegisterScreen = ({ navigation }) => {
   const [first_name, setFirstName] = useState({ value: '', error: '' })
@@ -43,6 +44,7 @@ const RegisterScreen = ({ navigation }) => {
   }
 
   return (
+    <ScrollView>
     <Background>
      
       <Logo />
@@ -111,10 +113,11 @@ const RegisterScreen = ({ navigation }) => {
       <View style={styles.row}>
         <Text>Already have an account? </Text>
         <TouchableOpacity onPress={() => navigation.replace('LoginScreen')}>
-          <Text style={styles.link}>Login</Text>
+          <Text style={styles.link, styles.bottomMargin}>Login</Text>
         </TouchableOpacity>
       </View>
     </Background>
+    </ScrollView>
   )
 }
 
@@ -127,6 +130,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: theme.colors.primary,
   },
+  bottomMargin: {
+    marginBottom : 55,
+  }
 })
 
 export default RegisterScreen

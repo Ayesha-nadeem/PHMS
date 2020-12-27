@@ -22,7 +22,7 @@ export default class DrawerContainer extends React.Component {
             title="Explore Hotels"
             source={require('../../../assets/icons/category.png')}
             onPress={() => {
-              // navigation.navigate('Categories');
+               navigation.navigate('LoginScreen');
               // navigation.closeDrawer();
             }}
           />
