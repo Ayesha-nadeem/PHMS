@@ -5,7 +5,7 @@ import Logo from '../components/Logo'
 import Header from '../components/Header'
 import TextInput from '../components/TextInput'
 import Button from '../components/Button'
-import { emailValidator } from '../helpers/emailValidator'
+import { emailValidator } from '../helpers/usernameValidator'
 
 const ForgotPasswordScreen = ({ navigation }) => {
   const [email, setEmail] = useState({ value: '', error: '' })

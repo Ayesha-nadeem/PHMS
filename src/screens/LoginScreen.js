@@ -8,42 +8,57 @@ import Button from '../components/Button'
 import TextInput from '../components/TextInput'
 
 import { theme } from '../core/theme'
-import { emailValidator } from '../helpers/emailValidator'
+import { usernameValidator } from '../helpers/usernameValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 
 const LoginScreen = ({ navigation }) => {
-  const [email, setEmail] = useState({ value: '', error: '' })
+  const [username, setUsername] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
 
-  const onLoginPressed = () => {
-    const emailError = emailValidator(email.value)
+  const onLoginPressed =async  () => {
+    const usernameError = usernameValidator(username.value)
     const passwordError = passwordValidator(password.value)
-    if (emailError || passwordError) {
-      setEmail({ ...email, error: emailError })
-      setPassword({ ...password, error: passwordError })
-      return
+    try {
+      if (usernameError || passwordError) {
+        setUsername({ ...username, error: usernameError })
+        setPassword({ ...password, error: passwordError })
+        return
+      }
+      else{
+        //Put the ip here
+        const ip = '';
+        const data = await fetch(`http://${ip}/login`, {
+          method: 'post',
+          body: JSON.stringify({
+            username,
+            password
+          })
+        })
+        const result = await data.json();
+        if(result.ok) {
+          navigation.navigate('Home');
+        }
+      }
     }
-    else{
-      navigation.navigate('Home');
+    catch(err) {
+      console.log("ERROR :" , err);
     }
+    
   }
 
   return (
     <Background>
       
       <Logo />
-      <Header>Welcome back.</Header>
+      <Header>Welcome back</Header>
       <TextInput
-        label="Email"
+        label="Username"
         returnKeyType="next"
-        value={email.value}
-        onChangeText={(text) => setEmail({ value: text, error: '' })}
-        error={!!email.error}
-        errorText={email.error}
+        value={username.value}
+        onChangeText={(text) => setUsername({ value: text, error: '' })}
+        error={!!username.error}
+        errorText={username.error}
         autoCapitalize="none"
-        autoCompleteType="email"
-        textContentType="emailAddress"
-        keyboardType="email-address"
       />
       <TextInput
         label="Password"
