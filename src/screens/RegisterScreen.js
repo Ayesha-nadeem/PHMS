@@ -11,6 +11,7 @@ import { theme } from '../core/theme'
 import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 import { nameValidator } from '../helpers/nameValidator'
+import { ScrollView } from 'react-native-gesture-handler'
 
 const RegisterScreen = ({ navigation }) => {
   const [first_name, setFirstName] = useState({ value: '', error: '' })
