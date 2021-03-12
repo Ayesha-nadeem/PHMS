@@ -1,4 +1,4 @@
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, StackRouter } from 'react-navigation';
 import {createDrawerNavigator} from 'react-navigation-drawer'
 import {createStackNavigator} from 'react-navigation-stack'
 import React from 'react'
@@ -9,9 +9,6 @@ import {
   Platform,
   Button
 } from "react-native";
-// import {createStackNavigator} from '@react-navigation/stack'
-// import {NavigationContainer} from '@react-navigation/native'
-// import {createDrawerNavigator} from '@react-navigation/drawer'
 import HomeScreen from '../screens/Home/HomeScreen';
 import Example from '../screens/timepicker/time';
 import Items from '../screens/Menu/items';
@@ -20,19 +17,16 @@ import StartScreen from '../screens/StartScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
-// import CategoriesScreen from '../screens/Categories/CategoriesScreen';
-// import RecipeScreen from '../screens/Recipe/RecipeScreen';
-// import RecipesListScreen from '../screens/RecipesList/RecipesListScreen';
 import DrawerContainer from '../screens/DrawerContainer/DrawerContainer';
-// import IngredientScreen from '../screens/Ingredient/IngredientScreen';
-// import SearchScreen from '../screens/Search/SearchScreen';
-// import IngredientsDetailsScreen from '../screens/IngredientsDetails/IngredientsDetailsScreen';
 import ShoppingCartIcon from '../screens/shoppingCart/shoppingCart';
 import CartScreen from '../screens/shoppingCart/CartScreen';
 import MenuButton from '../components/MenuButton/MenuButton';
-
 import OptionScreen from '../screens/Option/OptionScreen';
+import RoomDetails from '../screens/RoomDetails/RoomDetails';
 import RoomTypeList from '../screens/Room/RoomTypeList';
+import ConfirmSchedule from '../screens/ConfirmSchedule/Confirmation';
+import { TabBarIOS } from 'react-native';
+
 /* const Stack = createStackNavigator();
 
 function MainNavigator() {
@@ -65,18 +59,15 @@ const MainNavigator = createStackNavigator(
     LoginScreen:LoginScreen,
     RegisterScreen:RegisterScreen,
     ForgotPasswordScreen:ForgotPasswordScreen,
-    //Categories: CategoriesScreen,
-   // Recipe: RecipeScreen,
-   // RecipesList: RecipesListScreen,
-   // Ingredient: IngredientScreen,
-    //Search: SearchScreen,
-    //IngredientsDetails: IngredientsDetailsScreen,
+
     items:Items,
     Time:Example,
     Breakfast:Menu,
     Cart:CartScreen,
     Option: OptionScreen,
-    Room: RoomTypeList
+    RoomDet:RoomDetails,
+    Room: RoomTypeList,
+    Confirmation:ConfirmSchedule,
   },
   // {
   //   defaultNavigationOptions: ({ navigation })=>({
@@ -100,6 +91,7 @@ const MainNavigator = createStackNavigator(
         flex: 1,
       },
     })
+    
   }
 ); 
 

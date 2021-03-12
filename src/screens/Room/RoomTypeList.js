@@ -28,11 +28,9 @@ export default class RoomTypeList extends React.Component {
     const Types= [{"id":1,"name":"Single","uname":"single","photo_url":require('../../../assets/rooms/Single.jpg')},
     {"id":2,"name":"Deluxe","uname":"deluxe","photo_url":require('../../../assets/rooms/Deluxe.jpg')},
     {"id":3,"name":"Comfort","uname":"comfort","photo_url":require('../../../assets/rooms/Comfort.jpg')},
-    {"id":4,"name":"Presidential Suite","uname":"presidential","photo_url":require('../../../assets/rooms/Presidential.jpg')},
-    {"id":5,"name":"Junior Suite","uname":"junior","photo_url":require('../../../assets/rooms/Junior.jpg')},
-    {"id":6,"name":"Suite","uname":"suite","photo_url":require('../../../assets/rooms/Suite.jpg')},
-    {"id":7,"name":"Studio","uname":"studio","photo_url":require('../../../assets/rooms/Studio.jpg')},
-    {"id":8,"name":"Executive","uname":"executive","photo_url":require('../../../assets/rooms/Executive.jpg')}];
+   
+  
+    {"id":4,"name":"Executive","uname":"executive","photo_url":require('../../../assets/rooms/Executive.jpg')}];
     {
         this.setState({
             isLoading:true,
@@ -49,18 +47,20 @@ export default class RoomTypeList extends React.Component {
   
     <TouchableHighlight underlayColor='rgba(73,182,77,1,0.9)'  onPress={() => {  
     var hotel=this.props.navigation.getParam('hotel');
-    console.log(hotel);
+    var hotelName=this.props.navigation.getParam('hotelName');
+
     var rt= item.id;
     this.setState({
       hotelid: hotel,
       roomType:item.id,
   })
-    this.props.navigation.navigate('Home',{rt,hotel});}} >
+    this.props.navigation.navigate('RoomDet',{rt,hotel,hotelName});}} >
       
       <View style={styles.container}>
         <Image style={styles.photo} source={(item.photo_url)} />
         <Text style={styles.title}>{item.name}</Text>
         {/* <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text> */}
+        
       </View>
     </TouchableHighlight>
   );

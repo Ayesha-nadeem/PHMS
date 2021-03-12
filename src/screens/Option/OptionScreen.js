@@ -37,16 +37,15 @@ export default class OptionScreen extends React.Component {
     const pressHandler=(opt) =>{
         if (opt=="Menu")
         {
-            console.log(opt);
+            
             var hotel=this.props.navigation.getParam('hotel');
-          
-            this.props.navigation.navigate('Breakfast',{hotel});
+            var hotelName=this.props.navigation.getParam('hotelName');
+            this.props.navigation.navigate('Breakfast',{hotel,hotelName});
         }
         else{
-            console.log(opt);
             var hotel=this.props.navigation.getParam('hotel');
-            console.log(hotel);
-            this.props.navigation.navigate('Room',{hotel});
+            var hotelName=this.props.navigation.getParam('hotelName');
+            this.props.navigation.navigate('Room',{hotel,hotelName});
         }
         
 
@@ -58,12 +57,13 @@ export default class OptionScreen extends React.Component {
         </View> */}
           <View style={styles.centeredView}>
               <TouchableHighlight
+              
                 style={{ ...styles.openButton, backgroundColor: "orange" }}
                 onPress={() => pressHandler("Menu")}                  >
                   <View styles={styles.container}>
                 
                 {/* sIq3ADHz */}
-                <Text style={styles.textStyle}>Menu! </Text>
+                <Text style={styles.textStyle}>Menu</Text>
                 <Image style={styles.photoStyle} source={require('../../../assets/menus.png')} />
                 </View>
               </TouchableHighlight>
@@ -72,7 +72,7 @@ export default class OptionScreen extends React.Component {
                 onPress={() => pressHandler("Room")}                  >
                   <View styles={styles.container}>
                 {/* sIq3ADHz */}
-                <Text style={styles.textStyle}>Rooms! </Text>
+                <Text style={styles.textStyle}>Rooms </Text>
                 <Image style={styles.photoStyle} source={require('../../../assets/rooms.png')} />
                 </View>
               </TouchableHighlight>

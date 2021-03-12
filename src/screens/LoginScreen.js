@@ -38,7 +38,9 @@ const LoginScreen = ({ navigation }) => {
         if(result.ok) {
           navigation.navigate('Home');
         }
-      }
+      // navigation.navigate('Home');
+       }
+     
     }
     catch(err) {
       console.log("ERROR :" , err);

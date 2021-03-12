@@ -6,7 +6,7 @@ import Logo from '../components/Logo'
 import Header from '../components/Header'
 import Button from '../components/Button'
 import TextInput from '../components/TextInput'
-
+import { usernameValidator } from '../helpers/usernameValidator'
 import { theme } from '../core/theme'
 import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
@@ -24,18 +24,19 @@ const RegisterScreen = ({ navigation }) => {
   const onSignUpPressed = () => {
     const first_nameError = nameValidator(first_name.value)
     const Last_nameError = nameValidator(Last_name.value)
-    const user_nameError = nameValidator(user_name.value)
+    const user_nameError = usernameValidator(user_name.value)
     const emailError = emailValidator(email.value)
     const passwordError = passwordValidator(password.value)
     const confirm_passwordError = passwordValidator(password.value)
  
-    if (emailError || passwordError || first_nameError|| Last_name.value|| user_name.value) {
+    if (emailError || passwordError || first_nameError|| Last_nameError|| user_nameError  ) {
       setFirstName({ ...first_name, error: first_nameError })
       setLastName({ ...Last_name, error: Last_nameError })
       setUserName({ ...user_name, error: user_nameError})
       setEmail({ ...email, error: emailError })
       setPassword({ ...password, error: passwordError })
       setConfirmPassword({ ...confirm_password, error: confirm_passwordError })
+     
       return
     }
     else{

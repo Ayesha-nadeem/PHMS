@@ -8,12 +8,13 @@ export default class SlideShow extends Component {
       super(props);
       this.state = {
         images: [
-            require('../../assets/f7.jpg'),
-            require('../../assets/f8.jpg'),
-            require('../../assets/f9.jpg'),
-            require('../../assets/f10.jpg'),
+            require('../../assets/rooms/Executive.jpg'),
+            require('../../assets/rooms/Comfort.jpg'),
+            require('../../assets/rooms/Deluxe.jpg'),
+            require('../../assets/rooms/Single.jpg'),
         ]
       };
+      
     }
    
     render() {
