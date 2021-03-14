@@ -7,6 +7,27 @@ from .forms import *
 from django.contrib.auth.models import User,auth
 from django.http import JsonResponse
 from django.contrib import messages
+from django.http import Http404
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from django.core import serializers
+
+# class ScheduledRoomList(APIView):
+#     """
+#     List all snippets, or create a new snippet.
+#     """
+#     def get(self, request, format=None):
+#         snippets = ScheduledRoom.objects.all()
+#         serializer = ScheduledRoomSerializer(ScheduledRoom, many=True)
+#         return Response(serializer.data)
+
+#     def post(self, request, format=None):
+#         serializer = ScheduledRoomSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 # Create your views here.
 
 class HotelsView(viewsets.ModelViewSet):
@@ -35,7 +56,41 @@ class OrdersView(viewsets.ModelViewSet):
 class RoomView(viewsets.ModelViewSet):
     queryset=Room.objects.all()
     serializer_class=RoomSerializer
-    
+class ScheduledRoomView(viewsets.ModelViewSet):
+    queryset=ScheduledRoom.objects.all()
+    serializer_class=ScheduledRoomSerializer
+# class ScheduledRoom(APIView):
+#     """
+#     Retrieve, update or delete a snippet instance.
+#     """
+#     def get_object(self, pk):
+#         try:
+#             return ScheduledRoom.objects.get(pk=pk)
+#         except ScheduledRoom.DoesNotExist:
+#             raise Http404
+
+#     def get(self, request, pk, format=None):
+#         snippet = self.get_object(pk)
+#         serializer = ScheduledRoomSerializer(snippet)
+#         return Response(serializer.data)
+
+#     def put(self, request, pk, format=None):
+#         snippet = self.get_object(pk)
+#         serializer = ScheduledRoomSerializer(snippet, data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+#     def delete(self, request, pk, format=None):
+#         snippet = self.get_object(pk)
+#         snippet.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
+ 
+# class ScheduledRoomView(viewsets.ModelViewSet):
+#     queryset=ScheduledRoom.objects.all()
+#     data = serializers.serialize('json', queryset)
+#     serializer_class=ScheduledRoomSerializer   
 
 def login(request):
     if request.method== 'POST':
@@ -71,12 +126,34 @@ def register(request):
             else:   
                 user = User.objects.create_user(username=username, password=password1, email=email,first_name=first_name,last_name=last_name)
                 user.save();
+                
                 print('user created')
                 return JsonResponse({'valid':True,'exist':False})
 
         else:
             #messages.info(request,'password not matching..')    
             return JsonResponse({'valid':False,'exist':False})
+def scheduleRoom(request):
+
+    if request.method == 'GET':
+        hotel_id=request.GET['hotel_id']
+        room_no=request.GET['room_no']
+        room_type=request.GET['room_type']
+        user=request.GET['username']
+        checkin=request.GET['checkin']
+        checkout=request.GET['checkout']
+        checked_out=False
+        if ScheduledRoom.objects.filter(hotel_id_id=hotel_id,roomtype=room_type,room_no=room_no).exists():
+            return JsonResponse({'booked':False})
+        else:
+            scheduleRoom=ScheduledRoom.objects.create(hotel_id_id=hotel_id,username=user,room_no=room_no,checkin=checkin,checkout=checkout,checked_out=checked_out,roomtype=room_type)
+            scheduleRoom.save()
+            transactions=Transactions.objects.create(hotel_id_id=hotel_id,username=user,room_no=room_no,checkin=checkin,checkout=checkout,checked_out=checked_out,roomtype=room_type)
+            transactions.save()
+            return JsonResponse({'booked':True})
+    return JsonResponse({'booked':False})
+    
+#http://127.0.0.1:8000/scheduledRoom?hotel_id=7&username=a&room_no=66&checkin=2021-03-12T09:29:31Z&checkout=2021-03-12T09:29:31Z&checked_out=false
 
 def logout(request):
     auth.logout(request)

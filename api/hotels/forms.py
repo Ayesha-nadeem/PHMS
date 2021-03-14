@@ -133,4 +133,8 @@ class TimeSlotForm1(forms.ModelForm):
     class Meta:  
         model = TimeSlot  
         fields = "__all__"
+class ScheduledRoomForm1(forms.ModelForm):  
+    class Meta:  
+        model = ScheduledRoom  
+        fields = "__all__"
 

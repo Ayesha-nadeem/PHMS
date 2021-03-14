@@ -1,5 +1,15 @@
 from django.db import models
 import random,string
+from django.contrib.auth.models import User
+from django.utils.timezone import now
+from django.db.models import signals
+#from .tasks import update_checked_out#
+import logging
+#from .models import *
+#from user_api.celery import app
+#from celery import shared_task
+#from django.core.mail import send_mail
+from django.template.loader import render_to_string
 
 # Create your models here.
 
@@ -39,7 +49,59 @@ class TimeSlot(models.Model):
 
     # def __str__(self):
     #     return self.start
+class ScheduledRoom(models.Model):
+    hotel_id= models.ForeignKey(Hotels, on_delete=models.CASCADE)
+    username= models.CharField(max_length=200)
+    room_no=models.CharField(max_length=200)
+    checkin=models.DateTimeField(default=now)
+    checkout=models.DateTimeField(default=now)
+    checked_out=models.BooleanField(default=False)
+    roomtype=models.CharField(max_length=200,null=True)
+    
+    def __str__(self):
+        return self.room_no
 
+# def scheduledRoom_post_save(instance, *args, **kwargs):
+
+#     update_checked_out.apply_async((instance,), eta=instance.checkout)
+
+# signals.post_save.connect(scheduledRoom_post_save, sender=ScheduledRoom)
+
+# @shared_task
+# def update_checked_out(instance,user):
+#     from .serializers import ScheduledRoomSerializer
+#    # data = serializers.serialize('json', instance.objects.all())
+#     try:
+#         # scheduledRoom=ScheduledRoom.objects.update(checked_out=True)
+#         # scheduledRoom.save()
+#         # w = ScheduledRoom.objects.get(instance.username)
+#         # w.checked_out = True
+#         # w.save()
+#         print("signal")
+#         print("signal")
+
+# #gggg
+#         # mail_subject = 'Your notification.'
+#         # message = render_to_string('notify.html', {
+#         #     'title': instance.title,
+#         #     'content': instance.content
+#         # })
+#         # send_mail(mail_subject, message, recipient_list=[instance.user.email], from_email=None)
+
+#     except:
+#         logging.warning("Notification does not exist anymore")
+
+class Transactions(models.Model):
+    hotel_id= models.ForeignKey(Hotels, on_delete=models.CASCADE)
+    username= models.CharField(max_length=200)
+    room_no=models.CharField(max_length=200)
+    checkin=models.DateTimeField(default=now)
+    checkout=models.DateTimeField(default=now)
+    checked_out=models.BooleanField(default=False)
+    roomtype=models.CharField(max_length=200,null=True)
+
+    def __str__(self):
+        return self.room_no
 
 class Room(models.Model):
     hotel_id= models.ForeignKey(Hotels, on_delete=models.CASCADE)

@@ -55,11 +55,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'api.urls'
-#
+#os.path.join(BASE_DIR, 'templates'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -110,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Karachi'
 
 USE_I18N = True
 
@@ -127,5 +127,5 @@ MEDIA_URL ='/media/'
 STATIC_ROOT =os.path.join(BASE_DIR,'static/')
 MEDIA_ROOT= os.path.join(BASE_DIR,'media/')
 
-LOGOUT_REDIRECT_URL = '/admin/'
-LOGIN_REDIRECT_URL  = '/admin/home/'
+# LOGOUT_REDIRECT_URL = '/admin/'
+# LOGIN_REDIRECT_URL  = '/admin/home/'
