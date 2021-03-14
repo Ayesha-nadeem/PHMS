@@ -10,6 +10,8 @@ admin.site.register(Category)
 admin.site.register(TimeSlot)
 admin.site.register(Room)
 admin.site.register(ScheduledRoom)
+admin.site.register(Transactions)
+
 
 
 # class HotelsAdmin(admin.ModelAdmin):

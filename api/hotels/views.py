@@ -56,9 +56,14 @@ class OrdersView(viewsets.ModelViewSet):
 class RoomView(viewsets.ModelViewSet):
     queryset=Room.objects.all()
     serializer_class=RoomSerializer
+
 class ScheduledRoomView(viewsets.ModelViewSet):
     queryset=ScheduledRoom.objects.all()
     serializer_class=ScheduledRoomSerializer
+
+class TransactionsView(viewsets.ModelViewSet):
+    queryset=Transactions.objects.all()
+    serializer_class=TransactionsSerializer
 # class ScheduledRoom(APIView):
 #     """
 #     Retrieve, update or delete a snippet instance.
@@ -125,7 +130,7 @@ def register(request):
                 return JsonResponse({'valid':False,'exist':True})
             else:   
                 user = User.objects.create_user(username=username, password=password1, email=email,first_name=first_name,last_name=last_name)
-                user.save();
+                user.save()
                 
                 print('user created')
                 return JsonResponse({'valid':True,'exist':False})

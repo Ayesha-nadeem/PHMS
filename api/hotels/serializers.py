@@ -40,4 +40,7 @@ class ScheduledRoomSerializer(serializers.ModelSerializer):
         model=ScheduledRoom
         # fields=('id','name','description')
         fields = '__all__'
-
+class TransactionsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Transactions
+        fields='__all__'

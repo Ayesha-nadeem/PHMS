@@ -9,12 +9,12 @@ router.register('Item',views.ItemView,'Item')
 router.register('TimeSlot',views.TimeSlotView,'TimeSlot')
 router.register('Room',views.RoomView,'Room')
 router.register('Orders',views.OrdersView,'Orders')
-#router.register('sh',views.ScheduledRoomView,'sh')
+router.register('schRooms',views.ScheduledRoomView,'sh')
+router.register('transactions',views.TransactionsView,'transactions')
+
 urlpatterns = [
     
     path('',include(router.urls)),
-    path('ScheduledRoom/', views.ScheduledRoom),
-    path('ScheduledRoom/<int:pk>/', views.ScheduledRoom),
     path("register", views.register, name="register"),
     path("scheduledRoom", views.scheduleRoom, name="scheduledRoom"),
     path("login",views.login, name="login"),

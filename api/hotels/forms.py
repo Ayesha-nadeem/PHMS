@@ -138,3 +138,8 @@ class ScheduledRoomForm1(forms.ModelForm):
         model = ScheduledRoom  
         fields = "__all__"
 
+class TransactionsForm1(forms.ModelForm):  
+    class Meta:  
+        model = Transactions
+        fields = "__all__"
+
