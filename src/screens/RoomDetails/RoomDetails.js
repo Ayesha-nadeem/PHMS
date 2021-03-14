@@ -44,6 +44,7 @@ export default class OptionScreen extends React.Component {
 // onPressRecipe = item => {
 //   this.props.navigation.navigate('Breakfast', { item });
 // };
+//shows room type's specifications
   render() {
       const {navigaton}=this.props;
       const r=this.props.navigation.getParam('rt');
