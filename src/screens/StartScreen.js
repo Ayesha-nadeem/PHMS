@@ -6,9 +6,10 @@ import Button from '../components/Button'
 import Paragraph from '../components/Paragraph'
 
 const StartScreen = ({ navigation }) => (
+  
   <Background>
     <Logo />
-    <Header>PHMS </Header>
+    
     <Paragraph>
       Explore Your Destination.
     </Paragraph>
