@@ -52,7 +52,7 @@ export default class APIscreen extends React.Component {
         } 
         const naviPass=() =>{
             //hurraaahhh
-            this.props.navigation.navigate('APIscreen',{roomType,rentPerDay,hotelName,hotel,checkIn,checkOut});
+            this.props.navigation.navigate('Success',{roomType,rentPerDay,hotelName,hotel,checkIn,checkOut,r});
           
           } 
     

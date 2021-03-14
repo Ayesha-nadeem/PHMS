@@ -9,6 +9,7 @@ import {
   Platform,
   Button
 } from "react-native";
+import MenuImage from '../components/MenuImage/MenuImage';
 import HomeScreen from '../screens/Home/HomeScreen';
 import Example from '../screens/timepicker/time';
 import Items from '../screens/Menu/items';
@@ -26,32 +27,9 @@ import RoomDetails from '../screens/RoomDetails/RoomDetails';
 import RoomTypeList from '../screens/Room/RoomTypeList';
 import ConfirmSchedule from '../screens/ConfirmSchedule/Confirmation';
 import APIscreen from '../screens/APIScreenTest/APIscreen';
+import Success from '../screens/SuccessAPI/Success'
 import { TabBarIOS } from 'react-native';
 
-/* const Stack = createStackNavigator();
-
-function MainNavigator() {
-  return(
-    <Stack.Navigator
-      screenOptions={{
-          headerTitleStyle: {
-            fontWeight: 'bold',
-            textAlign: 'center',
-            alignSelf: 'center',
-            flex: 1,
-          }
-      }}
-    >
-      <Stack.Screen name='Home' component={HomeScreen} />
-      <Stack.Screen name='Categories' component={CategoriesScreen}/>
-      <Stack.Screen name='Recipe' component={RecipeScreen}/>
-      <Stack.Screen name='RecipesList' component={RecipesListScreen} />
-      <Stack.Screen name='Ingredient' component={IngredientScreen} />
-      <Stack.Screen name='Search' component={SearchScreen} />
-      <Stack.Screen name='IngredientsDetails' component={IngredientsDetailsScreen} />
-    </Stack.Navigator>
-  )
-} */
 
 const MainNavigator = createStackNavigator(
   {
@@ -69,7 +47,8 @@ const MainNavigator = createStackNavigator(
     RoomDet:RoomDetails,
     Room: RoomTypeList,
     Confirmation:ConfirmSchedule,
-    APIscreen,APIscreen
+    APIscreen,APIscreen,
+    Success,Success
   },
   // {
   //   defaultNavigationOptions: ({ navigation })=>({
@@ -83,9 +62,15 @@ const MainNavigator = createStackNavigator(
     // headerMode: 'float',
     defaultNavigationOptions: ({ navigation }) => ({
       headerTitle: 'PHMS',
-      headerRight: ()=><ShoppingCartIcon />,
+      //headerRight: ()=><ShoppingCartIcon />,
      
             // <ShoppingCartIcon />,
+            // headerRight: () =>
+            // <MenuImage
+            //   onPress={() => {
+            //     navigation.openDrawer();
+            //   }}
+            // />,
       headerTitleStyle: {
         fontWeight: 'bold',
         textAlign: 'center',

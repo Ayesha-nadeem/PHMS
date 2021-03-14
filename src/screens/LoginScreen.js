@@ -11,7 +11,9 @@ import { theme } from '../core/theme'
 import { usernameValidator } from '../helpers/usernameValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 
+
 const LoginScreen = ({ navigation }) => {
+ 
   const [username, setUsername] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
 

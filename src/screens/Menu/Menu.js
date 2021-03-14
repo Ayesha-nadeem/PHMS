@@ -71,12 +71,20 @@ import {
     StyleSheet,FlatList,TouchableHighlight,Image
 } from "react-native";
 
+import ShoppingCartIcon from '../shoppingCart/shoppingCart';
 //import { books } from '../../data/menudata';
 import Products from './Products'
 import { connect } from 'react-redux'
 import Items from './items';
 import styles from './styles';
 class Menu extends React.Component{
+    static navigationOptions = ({ navigation }) => ({
+        title: 'Menu',
+       
+        headerRight: (
+          <ShoppingCartIcon/>
+        )
+      });
     
     constructor(){
         super();
