@@ -26,19 +26,19 @@ const LoginScreen = ({ navigation }) => {
       }
       else{
         //Put the ip here
-        const ip = '';
-        const data = await fetch(`http://${ip}/login`, {
-          method: 'post',
-          body: JSON.stringify({
-            username,
-            password
-          })
-        })
-        const result = await data.json();
-        if(result.ok) {
-          navigation.navigate('Home');
-        }
-      // navigation.navigate('Home');
+        // const ip = '';
+        // const data = await fetch(`http://${ip}/login`, {
+        //   method: 'post',
+        //   body: JSON.stringify({
+        //     username,
+        //     password
+        //   })
+        // })
+        // const result = await data.json();
+        // if(result.ok) {
+        //   navigation.navigate('Home');
+        // }
+       navigation.navigate('Home');
        }
      
     }

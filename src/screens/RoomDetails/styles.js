@@ -32,11 +32,12 @@ const styles = StyleSheet.create({
       marginHorizontal:"20%",
       marginTop:10,
       marginBottom:10,
-      fontSize:31,
+      width:"75%",
       color: "white",
       textAlign:"center",
       borderWidth:1,
       borderColor:"blue",
+      alignSelf:"center",
     },
     roomRent: {
      
@@ -47,14 +48,20 @@ const styles = StyleSheet.create({
     
       marginTop:10,
       marginBottom:10,
-      fontSize:31,
+  
       color: "black",
       textAlign:"center",
       borderWidth:1,
       borderColor:"black",
       
     },
-
+    image: {
+     
+      resizeMode: "repeat",
+      width:'100%',
+      backgroundColor:"white",
+      height:'200%'
+    },
 
   openButton: {
     backgroundColor: "#F194FF",

@@ -1,6 +1,7 @@
 import React, { Component }  from 'react';
 import { Alert,FlatList, ScrollView, Text, View, TouchableHighlight, Image } from 'react-native';
 import styles from './styles';
+
 export default class RoomTypeList extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     title: 'Room',

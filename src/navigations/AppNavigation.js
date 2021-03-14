@@ -25,6 +25,7 @@ import OptionScreen from '../screens/Option/OptionScreen';
 import RoomDetails from '../screens/RoomDetails/RoomDetails';
 import RoomTypeList from '../screens/Room/RoomTypeList';
 import ConfirmSchedule from '../screens/ConfirmSchedule/Confirmation';
+import APIscreen from '../screens/APIScreenTest/APIscreen';
 import { TabBarIOS } from 'react-native';
 
 /* const Stack = createStackNavigator();
@@ -68,6 +69,7 @@ const MainNavigator = createStackNavigator(
     RoomDet:RoomDetails,
     Room: RoomTypeList,
     Confirmation:ConfirmSchedule,
+    APIscreen,APIscreen
   },
   // {
   //   defaultNavigationOptions: ({ navigation })=>({

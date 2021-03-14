@@ -1,5 +1,5 @@
 import React, { Component }  from 'react';
-import {TextInput, Alert,Modal,FlatList, ScrollView, Text, View, TouchableHighlight, Image } from 'react-native';
+import {TextInput, Alert,Modal,FlatList, ScrollView, Text, View, TouchableHighlight, ImageBackground } from 'react-native';
 import styles from './styles';
 //import { recipes } from '../../data/dataArrays';
 import MenuImage from '../../components/MenuImage/MenuImage';
@@ -12,6 +12,7 @@ import Logo from '../../components/Logo'
 import Header from '../../components/Header'
 import Button from '../../components/Button'
 import Paragraph from '../../components/Paragraph'
+
 
 //import Button from '../../components/Button'
 
@@ -111,20 +112,22 @@ export default class OptionScreen extends React.Component {
     // }
     return (
        
-      
+      <ScrollView>
         <View>
-            <SlideShow images={this.state.images} />
-            <Text style={styles.roomType}> {JSON.stringify(roomType)}</Text>
-            <Paragraph>Number of Persons Allowed :  {JSON.stringify(numOfPer)}</Paragraph>
-            <Paragraph>{JSON.stringify(roomDesc)}</Paragraph>
-          
-
-            <Text  style={styles.roomRent}>Starting from Rs:{JSON.stringify(rentPerDay)}</Text>
+          <ImageBackground source={require('../../assets/background_dot.png')} resizeMode="repeat" style={styles.image}>
+              <SlideShow images={this.state.images} />
+              <Text style={styles.roomType}> {JSON.stringify(roomType)}</Text>
+              <Text style={styles.roomRent}>Number of Persons Allowed :  {JSON.stringify(numOfPer)}</Text>
+              <Paragraph>Description : {JSON.stringify(roomDesc)}</Paragraph>
             
-            <Button mode="contained" onPress={navi}>Book now</Button>
 
-          
+              <Text  style={styles.roomRent}>Starting from Rs:{JSON.stringify(rentPerDay)}</Text>
+              
+              <Button mode="contained" style={{width:"60%" , alignSelf:"center"}} onPress={navi}>Book now</Button>
+
+          </ImageBackground>
         </View>
+      </ScrollView>
         
 
   
