@@ -3,7 +3,7 @@ import random,string
 from django.contrib.auth.models import User
 from django.utils.timezone import now
 from django.db.models import signals
-#from .tasks import update_checked_out#
+from .tasks import update_checked_out#
 import logging
 #from .models import *
 #from user_api.celery import app
@@ -52,22 +52,24 @@ class TimeSlot(models.Model):
 class ScheduledRoom(models.Model):
     hotel_id= models.ForeignKey(Hotels, on_delete=models.CASCADE)
     username= models.CharField(max_length=200)
-    room_no=models.CharField(max_length=200)
+    #room_no=models.CharField(max_length=200)
+    hotel_name=models.CharField(max_length=200,null=True)
+    amount=models.IntegerField(null=True)
     checkin=models.DateTimeField(default=now)
     checkout=models.DateTimeField(default=now)
     checked_out=models.BooleanField(default=False)
     roomtype=models.CharField(max_length=200,null=True)
     
     def __str__(self):
-        return self.room_no
+        return self.roomtype
 
-# def scheduledRoom_post_save(instance, *args, **kwargs):
+# def scheduledRoom_post_save(sender,instance, *args, **kwargs):
 
-#     update_checked_out.apply_async((instance,), eta=instance.checkout)
+#     update_checked_out.apply_async((sender,instance,), eta=instance.checkout)
 
 # signals.post_save.connect(scheduledRoom_post_save, sender=ScheduledRoom)
 
-# @shared_task
+#@shared_task
 # def update_checked_out(instance,user):
 #     from .serializers import ScheduledRoomSerializer
 #    # data = serializers.serialize('json', instance.objects.all())
@@ -94,14 +96,16 @@ class ScheduledRoom(models.Model):
 class Transactions(models.Model):
     hotel_id= models.ForeignKey(Hotels, on_delete=models.CASCADE)
     username= models.CharField(max_length=200)
-    room_no=models.CharField(max_length=200)
+    #room_no=models.CharField(max_length=200)
+    hotel_name=models.CharField(max_length=200,null=True)
+    amount=models.IntegerField(null=True)
     checkin=models.DateTimeField(default=now)
     checkout=models.DateTimeField(default=now)
     checked_out=models.BooleanField(default=False)
     roomtype=models.CharField(max_length=200,null=True)
 
     def __str__(self):
-        return self.room_no
+        return self.roomtype
 
 class Room(models.Model):
     hotel_id= models.ForeignKey(Hotels, on_delete=models.CASCADE)
