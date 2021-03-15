@@ -140,14 +140,14 @@ def register(request):
             return JsonResponse({'valid':False,'exist':False})
 def scheduleRoom(request):
 
-    if request.method == 'GET':
-        hotel_id=request.GET['hotel_id']
-        amount=request.GET['amount']
-        hotel_name=request.GET['hotel_name']
-        room_type=request.GET['room_type']
-        user=request.GET['username']
-        checkin=request.GET['checkin']
-        checkout=request.GET['checkout']
+    if request.method == 'POST':
+        hotel_id=request.POST['hotel_id']
+        amount=request.POST['amount']
+        hotel_name=request.POST['hotel_name']
+        room_type=request.POST['room_type']
+        user=request.POST['username']
+        checkin=request.POST['checkin']
+        checkout=request.POST['checkout']
         checked_out=False
         if ScheduledRoom.objects.filter(hotel_id_id=hotel_id,roomtype=room_type,username=user).exists():
             return JsonResponse({'booked':False})
@@ -157,7 +157,7 @@ def scheduleRoom(request):
             transactions=Transactions.objects.create(hotel_id_id=hotel_id,username=user,amount=amount,hotel_name=hotel_name,checkin=checkin,checkout=checkout,checked_out=checked_out,roomtype=room_type)
             transactions.save()
             return JsonResponse({'booked':True})
-    return JsonResponse({'booked1':False})
+    return JsonResponse({'booked':False})
     
 #http://127.0.0.1:8000/scheduledRoom?hotel_id=7&username=a&room_no=66&checkin=2021-03-12T09:29:31Z&checkout=2021-03-12T09:29:31Z&checked_out=false
 #http://127.0.0.1:8000/scheduledRoom?hotel_id=7&username=a&amount=66&hotel_name=Pearl%20Continental&room_type=dulex&&checkin=2021-03-12T09:29:31Z&checkout=2021-03-12T09:29:31Z&checked_out=false
