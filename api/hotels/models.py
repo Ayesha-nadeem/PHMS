@@ -2,8 +2,8 @@ from django.db import models
 import random,string
 from django.contrib.auth.models import User
 from django.utils.timezone import now
-from django.db.models import signals
-from .tasks import update_checked_out#
+#from django.db.models import signals
+#from .tasks import update_checked_out#
 import logging
 #from .models import *
 #from user_api.celery import app
