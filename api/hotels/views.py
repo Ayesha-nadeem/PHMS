@@ -99,17 +99,20 @@ class TransactionsView(viewsets.ModelViewSet):
 
 def login(request):
     if request.method== 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
         user = auth.authenticate(username=username,password=password)
+        if username is None or password is None:
+           return JsonResponse({'valid':False,'empty':True})
 
         if user is not None:
             auth.login(request, user)
-            return JsonResponse({'valid':True})
+            return JsonResponse({'valid':True,'empty':False})
         else:
+            return JsonResponse({'valid':False,'empty':False})
+
             #messages.info(request,'invalid credentials')
-            return JsonResponse({'valid':False})
 
 def register(request):
 
