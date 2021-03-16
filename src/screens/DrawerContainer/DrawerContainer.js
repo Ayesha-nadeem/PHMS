@@ -6,6 +6,15 @@ import MenuButton from '../../components/MenuButton/MenuButton';
 
 export default class DrawerContainer extends React.Component {
   render() {
+    const removeItemValue=async(key) =>{
+      try {
+          await AsyncStorage.removeItem(key);
+          return true;
+      }
+      catch(exception) {
+          return false;
+      }
+  }
     const { navigation } = this.props;
     return (
       <View style={styles.content}>
@@ -30,6 +39,7 @@ export default class DrawerContainer extends React.Component {
             title="Log Out"
             source={require('../../../assets/icons/search.png')}
             onPress={() => {
+              removeItemValue("user");
                navigation.navigate('StartScreen');
                navigation.closeDrawer();
             }}

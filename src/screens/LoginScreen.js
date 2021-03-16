@@ -10,7 +10,7 @@ import TextInput from '../components/TextInput'
 import { theme } from '../core/theme'
 import { usernameValidator } from '../helpers/usernameValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
-
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const LoginScreen = ({ navigation }) => {
  
@@ -40,6 +40,30 @@ const LoginScreen = ({ navigation }) => {
         // if(result.ok) {
         //   navigation.navigate('Home');
         // }
+        //for saving username these 2 functions are written 
+        const storeData = async (value) => {
+          try {
+            const jsonValue = JSON.stringify(value)
+            await AsyncStorage.setItem('user', jsonValue)
+          } catch (e) {
+            // saving error
+          }
+        }
+        storeData(username);
+        
+        const getData = async () => {
+          try {
+            const value = await AsyncStorage.getItem('user')
+            if(value !== null) {
+            
+              // value previously stored
+              console.log(value);
+            }
+          } catch(e) {
+            // error reading value
+          }
+        }
+        getData();
        navigation.navigate('Home');
        }
      
