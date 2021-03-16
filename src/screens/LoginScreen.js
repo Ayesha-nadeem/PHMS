@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { TouchableOpacity, StyleSheet, View } from 'react-native'
+import { TouchableOpacity, StyleSheet, View,Alert } from 'react-native'
 import { Text } from 'react-native-paper'
 import Background from '../components/Background'
 import Logo from '../components/Logo'
@@ -11,13 +11,13 @@ import { theme } from '../core/theme'
 import { usernameValidator } from '../helpers/usernameValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-
+import axios from 'axios'
 const LoginScreen = ({ navigation }) => {
  
   const [username, setUsername] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
 
-  const onLoginPressed =async  () => {
+  const onLoginPressed = () => {
     const usernameError = usernameValidator(username.value)
     const passwordError = passwordValidator(password.value)
     try {
@@ -27,44 +27,72 @@ const LoginScreen = ({ navigation }) => {
         return
       }
       else{
-        //Put the ip here
-        // const ip = '';
-        // const data = await fetch(`http://${ip}/login`, {
-        //   method: 'post',
-        //   body: JSON.stringify({
-        //     username,
-        //     password
-        //   })
+        // const data=JSON.stringify({
+        //   username:'saira',
+        //   password:'abcd@123'
         // })
+        const person = new FormData()
+
+        // Add data to FormData instance which is person
+        // The first parameter is the field name, same as the 'name' property in the HTML element <input name = 'name'>
+        // The second parameter is the value of the field itself
+        person.append('username', 'ayesha')
+
+        // Add data again data
+        person.append('password', 'abcd@123')
+        axios.post('http://192.168.100.5:8000/login',person)
+        .then((response) => {
+          Alert.alert("Modal has been closed."+response.data.valid+"  "+response.data.empty);
+
+          console.log(response);
+        }, (error) => {
+          console.log(error);
+        });
+        // Put the ip here
+        // const ip = '';
+        // const data = await fetch(`http://192.168.100.5:8000/login`, {
+        //   method: 'post',
+        //   mode:'no-cors',
+        //   headers: {
+        //     'Accept': 'application/json',
+        //     'Content-Type': 'application/json',
+        //   },
+        //   body: JSON.stringify({
+        //     username:'ayesha',
+        //     password:'abcd@123'
+        //   })
+        // });
         // const result = await data.json();
-        // if(result.ok) {
+        // Alert.alert("Modal has been closed."+result+"");
+
+        // if(result.valid) {
         //   navigation.navigate('Home');
         // }
         //for saving username these 2 functions are written 
-        const storeData = async (value) => {
-          try {
-            const jsonValue = JSON.stringify(value)
-            await AsyncStorage.setItem('user', jsonValue)
-          } catch (e) {
-            // saving error
-          }
-        }
-        storeData(username);
+      //   const storeData = async (value) => {
+      //     try {
+      //       const jsonValue = JSON.stringify(value)
+      //       await AsyncStorage.setItem('user', jsonValue)
+      //     } catch (e) {
+      //       // saving error
+      //     }
+      //   }
+      //   storeData(username);
         
-        const getData = async () => {
-          try {
-            const value = await AsyncStorage.getItem('user')
-            if(value !== null) {
+      //   const getData = async () => {
+      //     try {
+      //       const value = await AsyncStorage.getItem('user')
+      //       if(value !== null) {
             
-              // value previously stored
-              console.log(value);
-            }
-          } catch(e) {
-            // error reading value
-          }
-        }
-        getData();
-       navigation.navigate('Home');
+      //         // value previously stored
+      //         console.log(value);
+      //       }
+      //     } catch(e) {
+      //       // error reading value
+      //     }
+      //   }
+      //   getData();
+      //  navigation.navigate('Home');
        }
      
     }
