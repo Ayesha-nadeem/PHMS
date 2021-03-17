@@ -36,13 +36,15 @@ const LoginScreen = ({ navigation }) => {
         // Add data to FormData instance which is person
         // The first parameter is the field name, same as the 'name' property in the HTML element <input name = 'name'>
         // The second parameter is the value of the field itself
-        person.append('username', 'ayesha')
+        person.append('username', username.value)
 
         // Add data again data
-        person.append('password', 'abcd@123')
+        person.append('password', password.value)
         axios.post('http://192.168.100.5:8000/login',person)
         .then((response) => {
           Alert.alert("Modal has been closed."+response.data.valid+"  "+response.data.empty);
+          console.log(username);
+          storeData(username);
           navigation.navigate('Home');
 
 
@@ -71,29 +73,29 @@ const LoginScreen = ({ navigation }) => {
         //   navigation.navigate('Home');
         // }
         //for saving username these 2 functions are written 
-      //   const storeData = async (value) => {
-      //     try {
-      //       const jsonValue = JSON.stringify(value)
-      //       await AsyncStorage.setItem('user', jsonValue)
-      //     } catch (e) {
-      //       // saving error
-      //     }
-      //   }
-      //   storeData(username);
+        const storeData = async (value) => {
+          try {
+            const jsonValue = JSON.stringify(value)
+            await AsyncStorage.setItem('user', jsonValue)
+          } catch (e) {
+            // saving error
+          }
+        }
+        storeData(username);
         
-      //   const getData = async () => {
-      //     try {
-      //       const value = await AsyncStorage.getItem('user')
-      //       if(value !== null) {
+        const getData = async () => {
+          try {
+            const value = await AsyncStorage.getItem('user')
+            if(value !== null) {
             
-      //         // value previously stored
-      //         console.log(value);
-      //       }
-      //     } catch(e) {
-      //       // error reading value
-      //     }
-      //   }
-      //   getData();
+              // value previously stored
+              console.log(value);
+            }
+          } catch(e) {
+            // error reading value
+          }
+        }
+        getData();
       //  navigation.navigate('Home');
        }
      
