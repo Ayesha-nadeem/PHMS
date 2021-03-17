@@ -43,6 +43,8 @@ const LoginScreen = ({ navigation }) => {
         axios.post('http://192.168.100.5:8000/login',person)
         .then((response) => {
           Alert.alert("Modal has been closed."+response.data.valid+"  "+response.data.empty);
+          navigation.navigate('Home');
+
 
           console.log(response);
         }, (error) => {

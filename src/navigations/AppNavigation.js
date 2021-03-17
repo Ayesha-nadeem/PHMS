@@ -29,7 +29,7 @@ import ConfirmSchedule from '../screens/ConfirmSchedule/Confirmation';
 import APIscreen from '../screens/APIScreenTest/APIscreen';
 import Success from '../screens/SuccessAPI/Success'
 import { TabBarIOS } from 'react-native';
-
+import DisplayScheduledRoomsScreen from '../screens/DisplayScheduledRooms/DisplayScheduledRooms'
 
 const MainNavigator = createStackNavigator(
   {
@@ -38,6 +38,7 @@ const MainNavigator = createStackNavigator(
     LoginScreen:LoginScreen,
     RegisterScreen:RegisterScreen,
     ForgotPasswordScreen:ForgotPasswordScreen,
+    DisplayScheduledRooms:DisplayScheduledRoomsScreen,
 
     items:Items,
     Time:Example,
@@ -47,8 +48,8 @@ const MainNavigator = createStackNavigator(
     RoomDet:RoomDetails,
     Room: RoomTypeList,
     Confirmation:ConfirmSchedule,
-    APIscreen,APIscreen,
-    Success,Success
+    APIscreen:APIscreen,
+    Success:Success
   },
   // {
   //   defaultNavigationOptions: ({ navigation })=>({

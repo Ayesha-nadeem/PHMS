@@ -31,8 +31,8 @@ export default class DrawerContainer extends React.Component {
             title="My Rooms"
             source={require('../../../assets/icons/category.png')}
             onPress={() => {
-               //navigation.navigate('L');
-              // navigation.closeDrawer();
+               navigation.navigate('DisplayScheduledRooms');
+               navigation.closeDrawer();
             }}
           />
           <MenuButton
