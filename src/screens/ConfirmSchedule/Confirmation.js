@@ -1,6 +1,7 @@
-import React, { Component }  from 'react';
+import React, { useState }  from 'react';
 import {TextInput, Alert,Modal,FlatList, ScrollView, Text, View, TouchableHighlight, ImageBackground } from 'react-native';
 import styles from './styles';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import Button from '../../components/Button'
 import Paragraph from '../../components/Paragraph'
@@ -25,8 +26,16 @@ export default class Confirmation extends React.Component {
       super(props);
       this.state={
         isLoading:true,
+        isDatePickerVisible:false,
+        isDatePickerVisible1:false,
+        checkIn:new Date(),
+        checkOut:new Date(),
     }
+
+
+    
   }
+  
 
 
 // onPressRecipe = item => {
@@ -38,24 +47,79 @@ export default class Confirmation extends React.Component {
     const roomId=this.props.navigation.getParam('r');
     const hotelId=this.props.navigation.getParam('hotel');
     const roomType=this.props.navigation.getParam('roomType');
-    const amount=this.props.navigation.getParam('rentPerDay');
+    var amount=this.props.navigation.getParam('rentPerDay');
     var hotelName=this.props.navigation.getParam('hotelName');
-    var checkIn='';
-    var checkOut='';
+
+    const showDatePicker = () => {
+      this.setState({isDatePickerVisible:true});
+    };
+    const hideDatePicker = () => {
+        this.setState({isDatePickerVisible:false});
+    };
+    const handleConfirm = (date) => {
+      console.log(date.toDateString());
+      this.setState({checkIn : new Date(date)});
+      hideDatePicker();
+    };
+
+    const showDatePicker1 = () => {
+      this.setState({isDatePickerVisible1:true});
+    };
+    const hideDatePicker1 = () => {
+        this.setState({isDatePickerVisible1:false});
+    };
+    const handleConfirm1 = (date) => {
+      console.log(date.toDateString());
+      this.setState({checkOut : new Date(date)});
+      hideDatePicker1();
+      // amount=(this.state.checkOut.getTime()-this.state.checkIn.getTime())/86400000;
+      // console.log(typeof(this.state.checkOut));
+      // console.log(amount);
+    };
+
+    const btn1=<View>
+    {!(this.state.checkIn) && <Button title="Check In" width='25'    onPress={showDatePicker}>Check-In</Button>}
+    <Text onPress={showDatePicker}>{this.state.checkIn && this.state.checkIn.toDateString()}</Text>
+
+    
+    <DateTimePickerModal
+        isVisible={this.state.isDatePickerVisible}
+        mode='date'
+        onConfirm={handleConfirm}
+        onCancel={hideDatePicker}
+        minimumDate={new Date()}/>
+</View>
+const btn2=<View>
+{!(this.state.checkOut) && <Button title="Check In" width='25'    onPress={showDatePicker1}>Check-Out</Button>}
+<Text onPress={showDatePicker1}>{this.state.checkOut && this.state.checkOut.toDateString()}</Text>
+
+
+<DateTimePickerModal
+    isVisible={this.state.isDatePickerVisible1}
+    mode='date'
+    onConfirm={handleConfirm1}
+    onCancel={hideDatePicker1}
+    minimumDate={new Date()}/>
+</View>
+  //  const btn2=<Button onPress={()=>{showDatePicker}}></Button>
 
       const tableData= [
         [hotelName],
         [ roomType],
         [ amount+' PKR/night'],
-        [ '22-03-2000'],
-        ['23-03-2000']
+        [btn1],
+        [btn2]
       ];
+      
 
       const navi=() =>{
      
         this.props.navigation.navigate('APIscreen',{roomType,amount,hotelName,hotelId,checkIn,checkOut,roomId});
       
+
       } 
+      
+      
   
    
       
@@ -75,12 +139,24 @@ export default class Confirmation extends React.Component {
               
                 <Col data={tableTitle} style={styles.title} heightArr={[50,50]} textStyle={styles.text2}/>
                 <Rows data={tableData} flexArr={[ 1, 1]} style={styles.row} textStyle={styles.text}/>
+
                 
               </TableWrapper>
             </Table>
+
+            
+              {/* <View>
+                    <AppButton title="Check Out" width='30'    onPress={showDatePicker}></AppButton>
+                    <Text >{checkOut.toDateString()}</Text>
+                    <DateTimePickerModal
+                        isVisible={isDatePickerVisible}
+                        mode='date'
+                        onConfirm={handleConfirm}
+                        onCancel={hideDatePicker}
+                        minimumDate={new Date(checkIn)}/>
+              </View> */}
               
             <Button style={{width:'60%', alignSelf:'center',marginTop:'20%'}} mode="contained" onPress={navi}>Pay Now</Button>
-          
           </ImageBackground>
         </View>
         

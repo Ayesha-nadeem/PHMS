@@ -12,6 +12,7 @@ import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 import { nameValidator } from '../helpers/nameValidator'
 import { ScrollView } from 'react-native-gesture-handler'
+import axios from 'axios'
 
 const RegisterScreen = ({ navigation }) => {
   const [first_name, setFirstName] = useState({ value: '', error: '' })
@@ -21,26 +22,54 @@ const RegisterScreen = ({ navigation }) => {
   const [password, setPassword] = useState({ value: '', error: '' })
   const [confirm_password, setConfirmPassword] = useState({ value: '', error: '' })
 
-  const onSignUpPressed = () => {
+  const onSignUpPressed =async () => {
     const first_nameError = nameValidator(first_name.value)
     const Last_nameError = nameValidator(Last_name.value)
-    const user_nameError = usernameValidator(user_name.value)
+    const user_nameError = nameValidator(user_name.value)
     const emailError = emailValidator(email.value)
     const passwordError = passwordValidator(password.value)
     const confirm_passwordError = passwordValidator(password.value)
- 
-    if (emailError || passwordError || first_nameError|| Last_nameError|| user_nameError  ) {
+    
+    try {
+    if (emailError || passwordError || first_nameError|| Last_name.value|| user_name.value) {
       setFirstName({ ...first_name, error: first_nameError })
       setLastName({ ...Last_name, error: Last_nameError })
       setUserName({ ...user_name, error: user_nameError})
       setEmail({ ...email, error: emailError })
       setPassword({ ...password, error: passwordError })
       setConfirmPassword({ ...confirm_password, error: confirm_passwordError })
-     
       return
     }
     else{
-      navigation.navigate('StartScreen');
+      // const data=JSON.stringify({
+      //   username:'saira',
+      //   password:'abcd@123'
+      // })
+      const person = new FormData()
+
+      // Add data to FormData instance which is person
+      // The first parameter is the field name, same as the 'name' property in the HTML element <input name = 'name'>
+      // The second parameter is the value of the field itself
+      person.append('first_name', 'zain')
+      person.append('last_name', 'jutt')
+      person.append('username', 'jutt3434')
+      person.append('password1', 'neymar11')
+      person.append('password2', 'neymar11')
+      person.append('email', 'zainjr619@gmail.com')
+
+      // Add data again data
+      axios.post('http://192.168.100.5:8000/register',person)
+      .then((response) => {
+        Alert.alert("Modal has been closed."+response.data.valid+"  "+response.data.empty);
+
+        console.log(response);
+      }, (error) => {
+        console.log(error);
+      });
+    }
+  }
+    catch(err) {
+      console.log("ERROR :" , err);
     }
   }
 
