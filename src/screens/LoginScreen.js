@@ -6,7 +6,6 @@ import Logo from '../components/Logo'
 import Header from '../components/Header'
 import Button from '../components/Button'
 import TextInput from '../components/TextInput'
-
 import { theme } from '../core/theme'
 import { usernameValidator } from '../helpers/usernameValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
@@ -27,12 +26,12 @@ const LoginScreen = ({ navigation }) => {
         return
       }
       else{
+        console.log("imelse")
         // const data=JSON.stringify({
         //   username:'saira',
         //   password:'abcd@123'
         // })
         const person = new FormData()
-
         // Add data to FormData instance which is person
         // The first parameter is the field name, same as the 'name' property in the HTML element <input name = 'name'>
         // The second parameter is the value of the field itself
@@ -40,17 +39,23 @@ const LoginScreen = ({ navigation }) => {
 
         // Add data again data
         person.append('password', password.value)
-        axios.post('http://192.168.100.5:8000/login',person)
+        axios.post('http://192.168.0.106:8001/login',person)
         .then((response) => {
-          Alert.alert("Modal has been closed."+response.data.valid+"  "+response.data.empty);
-          console.log(username);
+    //      Alert.alert("Modal has been closed."+response.data.valid+"  "+response.data.empty);
+         // console.log(response);
+         if (response.data.valid==true)
+         {
+          console.log("IamResponse")
           storeData(username);
           navigation.navigate('Home');
+         }
+         else{
+           console.log("invalid login");
+         }
 
-
-          console.log(response);
+   //       console.log(response);
         }, (error) => {
-          console.log(error);
+          console.log("iamErrorr"+ error);
         });
         // Put the ip here
         // const ip = '';
@@ -75,13 +80,15 @@ const LoginScreen = ({ navigation }) => {
         //for saving username these 2 functions are written 
         const storeData = async (value) => {
           try {
+            console.log(value);
             const jsonValue = JSON.stringify(value)
             await AsyncStorage.setItem('user', jsonValue)
           } catch (e) {
+            console.log("saving error")
             // saving error
           }
         }
-        storeData(username);
+       // storeData(username);
         
         const getData = async () => {
           try {
@@ -95,7 +102,7 @@ const LoginScreen = ({ navigation }) => {
             // error reading value
           }
         }
-        getData();
+      //  getData();
       //  navigation.navigate('Home');
        }
      

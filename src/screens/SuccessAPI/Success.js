@@ -7,7 +7,7 @@ import Tick from '../../components/Tick';
 import Header from '../../components/Header';
 import Hyperlink from 'react-native-hyperlink';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import axios from 'axios'
 const url='../screens/Home/HomeScreen';
 export default class Success extends React.Component {
     static navigationOptions = ({ navigation }) => ({
@@ -29,7 +29,6 @@ export default class Success extends React.Component {
         isLoading:true,
     }
     }
-  
   
 
     render() {
@@ -55,35 +54,32 @@ export default class Success extends React.Component {
             username=value;
             username=JSON.parse(username);
             username=username.value;
-            console.log(username);
-         
+           // console.log(username);
+            callApi();
           }
         } catch(e) {
           // error reading value
         }
       }
       getData();
-
       //function to call scheduleroom
-      const callApi = async ()=>{
-        try {
-          const ip = '127.0.0.1:8000';
-          console.log("i'm running");
-          const data = fetch(`http://${ip}/scheduleroom`, {
-            method: 'POST',
-            body: JSON.stringify({
-              username,
-              hotel_id,
-              room_type,
-              checkin,
-              checkout,
-              amount,
-              hotel_name
-              
-            })
-          })
-          const result = await data.json();
-          if(result.booked==false) {
+      const callApi = ()=>{
+        const person1 = new FormData()
+        // Add data to FormData instance which is person
+        // The first parameter is the field name, same as the 'name' property in the HTML element <input name = 'name'>
+        // The second parameter is the value of the field itself
+        person1.append('username', username)
+        person1.append('hotel_id', hotel_id)
+        person1.append('room_type', room_type)
+        person1.append('checkin', '2021-03-25')
+        person1.append('checkout','2021-03-26' )
+        person1.append('amount', amount)
+        person1.append('hotel_name',hotel_name)
+        console.log(hotel_id, room_type, checkin,checkout,hotel_name,username)
+        axios.post('http://192.168.0.106:8001/scheduledRoom',person1)
+        .then((response) => {
+         // Alert.alert("Modal has been closed."+response.data.booked);
+          if(response.data.booked==false) {
     
             Alert.alert('Contact Admin (Payment Done,room not booked)');
             const roomType=room_type;
@@ -92,20 +88,19 @@ export default class Success extends React.Component {
             const hotel=hotel_id;
           
             this.props.navigation.navigate('Confirmation',{roomType,rentPerDay,hotelName,hotel,r});
-    
+        
           }
           else
           {
-            Alert.alert(result);
+            console.log ("success");
+           // Alert.alert("Payment Failed");
           }
+        }, (error) => {
+            console.log(error);
+          });
        } 
-       catch (error) {
-        console.log("error :" , error);
-       }
-       }
 
-      callApi();
-     
+      
         
       return (
   
