@@ -13,6 +13,7 @@ import { passwordValidator } from '../helpers/passwordValidator'
 import { nameValidator } from '../helpers/nameValidator'
 import { ScrollView } from 'react-native-gesture-handler'
 import axios from 'axios'
+import { Alert } from 'react-native'
 
 const RegisterScreen = ({ navigation }) => {
   const [first_name, setFirstName] = useState({ value: '', error: '' })
@@ -31,7 +32,8 @@ const RegisterScreen = ({ navigation }) => {
     const confirm_passwordError = passwordValidator(password.value)
     
     try {
-    if (emailError || passwordError || first_nameError|| Last_name.value|| user_name.value) {
+    if (emailError || passwordError || first_nameError|| Last_nameError|| user_nameError) {
+      console.log("Signup If");
       setFirstName({ ...first_name, error: first_nameError })
       setLastName({ ...Last_name, error: Last_nameError })
       setUserName({ ...user_name, error: user_nameError})
@@ -41,28 +43,42 @@ const RegisterScreen = ({ navigation }) => {
       return
     }
     else{
-      // const data=JSON.stringify({
-      //   username:'saira',
-      //   password:'abcd@123'
-      // })
+     console.log("Signup else");
       const person = new FormData()
 
       // Add data to FormData instance which is person
       // The first parameter is the field name, same as the 'name' property in the HTML element <input name = 'name'>
       // The second parameter is the value of the field itself
-      person.append('first_name', 'zain')
-      person.append('last_name', 'jutt')
-      person.append('username', 'jutt3434')
-      person.append('password1', 'neymar11')
-      person.append('password2', 'neymar11')
-      person.append('email', 'zainjr619@gmail.com')
+      person.append('first_name', first_name.value)
+      person.append('last_name', Last_name.value)
+      person.append('username', user_name.value)
+      person.append('password1', password.value)
+      person.append('password2', confirm_password.value)
+      person.append('email', email.value)
 
+      console.log(password.value);
+      console.log(confirm_password.value);
       // Add data again data
-      axios.post('http://192.168.100.5:8000/register',person)
+      axios.post('http://192.168.10.31:8001/register',person)
       .then((response) => {
-        Alert.alert("Modal has been closed."+response.data.valid+"  "+response.data.empty);
+        if (response.data.valid==true)
+         {
+          console.log("signup pass")
+          Alert.alert("Congratulations! User added")
+          navigation.navigate('LoginScreen');
+         }
+         else if(response.data.exist==true){
+           Alert.alert("Username Already taken");
+           console.log("username already ");
+         }
+         else
+         {
+           Alert.alert("Oops! Something Went Wrong.")
+           console.log("signup failed");
+           console.log(response.data);
+         }
 
-        console.log(response);
+       
       }, (error) => {
         console.log(error);
       });
