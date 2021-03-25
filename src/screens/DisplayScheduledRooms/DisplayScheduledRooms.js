@@ -25,11 +25,12 @@ export default class DisplayScheduledRoomsScreen extends React.Component {
     this.state={
      
       dataSource:[],
+      user:"",
     
   }
   }
   
-
+  
   componentDidMount(){
       
     var username;
@@ -42,7 +43,18 @@ export default class DisplayScheduledRoomsScreen extends React.Component {
           username=JSON.parse(username);
           username=username.value;
           //console.log(username);
-
+          fetch('http://192.168.10.31:8001/schRooms/?format=json').then((response)=>response.json())
+          .then((responseJson)=>{
+      
+             
+              this.setState({
+                  isLoading:true,
+                  dataSource:responseJson,
+                  user:username,
+                  
+              })
+             
+          })
     
        
         }
@@ -53,17 +65,10 @@ export default class DisplayScheduledRoomsScreen extends React.Component {
 
     
 
-    fetch('http://192.168.10.31:8001/schRooms/?format=json').then((response)=>response.json())
-    .then((responseJson)=>{
-        this.setState({
-            isLoading:true,
-            dataSource:responseJson,
-            
-        })
-        getData();
-    })
+   getData();
    
 }
+
  avatarImage=img=> {
     switch (img) {
       case "Deluxe":
@@ -76,9 +81,7 @@ export default class DisplayScheduledRoomsScreen extends React.Component {
         return require('../../../assets/rooms/Single.jpg');
     }
   }
-// onPressRecipe = item => {
-//   this.props.navigation.navigate('Breakfast', { item });
-// };
+
   renderRecipes = ({ item }) => (
     
     <TouchableHighlight underlayColor='rgba(73,182,77,1,0.9)' onPress={() => 
@@ -107,9 +110,7 @@ export default class DisplayScheduledRoomsScreen extends React.Component {
 
   render() {
      
-    
-    
-     console.log(username);
+   
     return (
 
       <View>
@@ -117,7 +118,7 @@ export default class DisplayScheduledRoomsScreen extends React.Component {
           vertical
           showsVerticalScrollIndicator={false}
           numColumns={1}
-          data={this.state.dataSource.filter(d => d.username===username)}
+          data={this.state.dataSource.filter(d => d.username===this.state.user)}
           renderItem={this.renderRecipes}
           keyExtractor={item => item.id}
         />
