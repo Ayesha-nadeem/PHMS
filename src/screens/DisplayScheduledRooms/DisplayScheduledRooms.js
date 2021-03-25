@@ -28,14 +28,39 @@ export default class DisplayScheduledRoomsScreen extends React.Component {
     
   }
   }
+  
 
   componentDidMount(){
-    fetch('http://192.168.100.5:8000/schRooms/?format=json').then((response)=>response.json())
+      
+    var username;
+    const getData = async () => {
+      try {
+        const value = await AsyncStorage.getItem('user')
+        if(value !== null) {
+          // value previously stored
+          username=value;
+          username=JSON.parse(username);
+          username=username.value;
+          //console.log(username);
+
+    
+       
+        }
+      } catch(e) {
+        //error reading value
+      }
+    }
+
+    
+
+    fetch('http://192.168.10.31:8001/schRooms/?format=json').then((response)=>response.json())
     .then((responseJson)=>{
         this.setState({
             isLoading:true,
-            dataSource:responseJson
+            dataSource:responseJson,
+            
         })
+        getData();
     })
    
 }
@@ -81,29 +106,10 @@ export default class DisplayScheduledRoomsScreen extends React.Component {
   );
 
   render() {
-      var username='';
-      const getData = async () => {
-        try {
-          const value = await AsyncStorage.getItem('user')
-          if(value !== null) {
-            // value previously stored
-            username=value;
-            username=JSON.parse(username);
-            username=username.value;
-            console.log(username);
-
-      
-         
-          }
-        } catch(e) {
-          //error reading value
-        }
-      }
-      const user="ayesha";
-      console.log("username  "+username);
-      console.log("user  "+user);
-
-      getData();
+     
+    
+    
+     console.log(username);
     return (
 
       <View>
@@ -111,7 +117,7 @@ export default class DisplayScheduledRoomsScreen extends React.Component {
           vertical
           showsVerticalScrollIndicator={false}
           numColumns={1}
-          data={this.state.dataSource.filter(d => d.username===user)}
+          data={this.state.dataSource.filter(d => d.username===username)}
           renderItem={this.renderRecipes}
           keyExtractor={item => item.id}
         />

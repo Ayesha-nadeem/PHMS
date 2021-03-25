@@ -50,6 +50,13 @@ export default class Confirmation extends React.Component {
     const roomType=this.props.navigation.getParam('roomType');
     var amount=this.props.navigation.getParam('rentPerDay');
     var hotelName=this.props.navigation.getParam('hotelName');
+    const navi=() =>{
+     var checkIn=this.state.checkIn;
+     var checkOut=this.state.checkOut;
+      this.props.navigation.navigate('APIscreen',{roomType,amount,hotelName,hotelId,checkIn,checkOut,roomId});
+    
+
+    } 
 
     const showDatePicker = () => {
       this.setState({isDatePickerVisible:true});
@@ -84,7 +91,8 @@ export default class Confirmation extends React.Component {
         const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24)); 
         console.log(diffTime + " milliseconds");
         console.log(diffDays + " days");
-        this.setState({amount:amount*diffDays});     
+        this.setState({amount:amount*diffDays});   
+       
       });
       //this.setState({checkOut : new Date(date)});
       console.log(this.state.checkOut);
@@ -136,12 +144,7 @@ const btn2=<View>
       ];
       
 
-      const navi=() =>{
      
-        this.props.navigation.navigate('APIscreen',{roomType,amount,hotelName,hotelId,checkIn,checkOut,roomId});
-      
-
-      } 
       
       
   
