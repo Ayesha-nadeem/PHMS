@@ -28,8 +28,9 @@ export default class Confirmation extends React.Component {
         isLoading:true,
         isDatePickerVisible:false,
         isDatePickerVisible1:false,
-        checkIn:new Date(),
-        checkOut:new Date(),
+        checkIn:'',
+        checkOut:'',
+        amount:0
     }
 
 
@@ -57,8 +58,17 @@ export default class Confirmation extends React.Component {
         this.setState({isDatePickerVisible:false});
     };
     const handleConfirm = (date) => {
-      console.log(date.toDateString());
-      this.setState({checkIn : new Date(date)});
+      this.setState({checkIn : new Date(date)},()=> {
+       if (this.state.checkOut){
+        const diffTime = Math.abs(this.state.checkOut - this.state.checkIn);
+        const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24)); 
+        console.log(diffTime + " milliseconds");
+        console.log(diffDays + " days");
+        this.setState({amount:amount*diffDays})
+      }
+        
+     
+       });
       hideDatePicker();
     };
 
@@ -69,9 +79,23 @@ export default class Confirmation extends React.Component {
         this.setState({isDatePickerVisible1:false});
     };
     const handleConfirm1 = (date) => {
-      console.log(date.toDateString());
-      this.setState({checkOut : new Date(date)});
+      this.setState({checkOut : new Date(date)},()=> {
+        const diffTime = Math.abs(this.state.checkOut - this.state.checkIn);
+        const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24)); 
+        console.log(diffTime + " milliseconds");
+        console.log(diffDays + " days");
+        this.setState({amount:amount*diffDays});     
+      });
+      //this.setState({checkOut : new Date(date)});
+      console.log(this.state.checkOut);
       hideDatePicker1();
+      
+
+
+     // const diffTime = Math.abs(this.state.checkOut - this.state.checkIn);
+      //const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+      //console.log(diffTime + " milliseconds");
+      //console.log(diffDays + " days");
       // amount=(this.state.checkOut.getTime()-this.state.checkIn.getTime())/86400000;
       // console.log(typeof(this.state.checkOut));
       // console.log(amount);
@@ -106,7 +130,7 @@ const btn2=<View>
       const tableData= [
         [hotelName],
         [ roomType],
-        [ amount+' PKR/night'],
+        [this.state.amount+' PKR/night'],
         [btn1],
         [btn2]
       ];
