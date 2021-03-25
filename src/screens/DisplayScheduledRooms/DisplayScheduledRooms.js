@@ -4,7 +4,7 @@ import styles from './styles';
 //import { recipes } from '../../data/dataArrays';
 import MenuImage from '../../components/MenuImage/MenuImage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import Moment from 'moment';
 
 export default class DisplayScheduledRoomsScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -43,7 +43,8 @@ export default class DisplayScheduledRoomsScreen extends React.Component {
           username=JSON.parse(username);
           username=username.value;
           //console.log(username);
-          fetch('http://192.168.10.31:8001/schRooms/?format=json').then((response)=>response.json())
+         // fetch('http://192.168.10.31:8001/schRooms/?format=json').then((response)=>response.json())
+          fetch('http://192.168.0.106:8001/schRooms/?format=json').then((response)=>response.json())
           .then((responseJson)=>{
       
              
@@ -92,16 +93,23 @@ export default class DisplayScheduledRoomsScreen extends React.Component {
     //   console.log(hotel);
     //'image!name-of-the-asset'
     Alert.alert(""+item.roomtype);
+    
+    console.log(item.checked_out);
 } }>
+    
+  
       <View style={styles.container}>
+        
         <Image style={styles.photo} source={this.avatarImage(item.roomtype)}/>
-        <Text style={styles.Productbuttontitle}>{item.username}</Text>
-        <Text  style={styles.Productbuttontitle}>{item.hotel_name}</Text>
-        <Text  style={styles.Productbuttontitle}>{item.amount}</Text>
-        <Text  style={styles.Productbuttontitle}>{item.checkin}</Text>
-        <Text  style={styles.Productbuttontitle}>{item.checkout}</Text>
-        <Text  style={styles.Productbuttontitle}>{item.checked_out}</Text>
-        <Text  style={styles.Productbuttontitle}>{item.roomtype}</Text>
+        <View style={styles.boxes}>
+        <Text style={styles.Productbuttontitle}>Username: {item.username}</Text>
+        <Text  style={styles.Productbuttontitle}>Hotel: {item.hotel_name}</Text>
+        <Text  style={styles.Productbuttontitle}>Room Type {item.roomtype}</Text>
+        <Text  style={styles.Productbuttontitle}>Amount Due: {item.amount}</Text>
+        <Text  style={styles.Productbuttontitle}>CheckIn Date: {Moment(item.checkin).format('MMM d, YYYY')}</Text>
+        <Text  style={styles.Productbuttontitle}>CheckOut Date: {Moment(item.checkout).format('MMM d, YYYY')}</Text>
+        <Text  style={styles.Productbuttontitle}>CheckOut Status: {String(item.checked_out)}</Text>
+        </View>
 
         {/* <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text> */}
       </View>
@@ -110,7 +118,7 @@ export default class DisplayScheduledRoomsScreen extends React.Component {
 
   render() {
      
-   
+    Moment.locale('en');
     return (
 
       <View>

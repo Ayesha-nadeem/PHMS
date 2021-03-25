@@ -39,7 +39,8 @@ const LoginScreen = ({ navigation }) => {
 
         // Add data again data
         person.append('password', password.value)
-        axios.post('http://192.168.10.31:8001/login',person)
+        //axios.post('http://192.168.10.31:8001/login',person)
+        axios.post('http://192.168.0.106:8001/login',person)
         .then((response) => {
     //      Alert.alert("Modal has been closed."+response.data.valid+"  "+response.data.empty);
          // console.log(response);

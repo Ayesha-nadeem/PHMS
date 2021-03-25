@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { RecipeCard } from '../../AppStyles';
 const styles = StyleSheet.create({
-  container: RecipeCard.container,
+  
   photo: RecipeCard.photo,
   title: RecipeCard.title,
   category: RecipeCard.category,
@@ -17,31 +17,47 @@ const styles = StyleSheet.create({
     borderWidth: 2,  
     borderColor: '#FFA701',    
   } ,
+  container:{
+    justifyContent:'center',
+    alignItems:'center',
+    marginLeft:'10%',
+    marginRight:'10%',
+    marginTop:20
+  },
   ProductButton:{
     flexDirection:'row',
     backgroundColor:'#FFa000',
     borderColor: '#fff',
     height:30,
     marginBottom:8,
-    width:160,
+    width:200,
     borderRadius: 10, 
         
   },
   Productbuttontitle: {
-  
-    fontSize: 15,
+    fontSize: 12,
     fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#ffffff',
-    marginTop: 3,
-    marginStart:5,
+    color: 'black',
+    marginTop: 2,
+    textAlign:'center',
+    justifyContent:'flex-end',
+    padding: 2,
+    borderWidth:1,
+    
   },
   ProductbuttonIcon: {
     
     color: '#ffffff',
-    marginTop: 3,
+    marginTop: 5,
     marginStart:25,
 
+
+  },
+  boxes:{
+    width:'80%',
+    backgroundColor: "cornsilk",
+    borderWidth: 1,
+    
   },
   FlatlistStyle:
   {
@@ -75,8 +91,10 @@ const styles = StyleSheet.create({
     elevation: 2
   },
   textStyle: {
-    color: "white",
+    color: "black",
     fontWeight: "bold",
+    fontSize:20,
+    justifyContent:'center',
     textAlign: "center"
   },
   modalText: {
