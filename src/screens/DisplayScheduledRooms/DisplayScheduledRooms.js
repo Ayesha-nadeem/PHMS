@@ -44,7 +44,7 @@ export default class DisplayScheduledRoomsScreen extends React.Component {
           username=username.value;
           //console.log(username);
          // fetch('http://192.168.10.31:8001/schRooms/?format=json').then((response)=>response.json())
-          fetch('http://192.168.0.106:8001/schRooms/?format=json').then((response)=>response.json())
+          fetch('http://192.168.10.7:8001/schRooms/?format=json').then((response)=>response.json())
           .then((responseJson)=>{
       
              

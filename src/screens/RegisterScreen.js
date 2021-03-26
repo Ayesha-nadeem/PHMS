@@ -59,7 +59,7 @@ const RegisterScreen = ({ navigation }) => {
       console.log(password.value);
       console.log(confirm_password.value);
       // Add data again data
-      axios.post('http://192.168.10.31:8001/register',person)
+      axios.post('http://192.168.10.7:8001/register',person)
       .then((response) => {
         if (response.data.valid==true)
          {

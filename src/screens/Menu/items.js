@@ -70,6 +70,7 @@ import {
     Alert,
     StyleSheet,FlatList,TouchableHighlight,Image
 } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //import { books } from '../../data/menudata';
 import Products from './Products'
@@ -80,10 +81,48 @@ class Items extends React.Component{
         super();
         this.state={
             isLoading:true,
-            dataSource:[]
+            dataSource:[],
+            dataSourceForSchRooms:[],
+            user:"",
+
         }
     }
     componentDidMount(){
+        var username;
+        const getData = async () => {
+          try {
+            const value = await AsyncStorage.getItem('user')
+            if(value !== null) {
+              // value previously stored
+              username=value;
+              username=JSON.parse(username);
+              username=username.value;
+              //console.log(username);
+             // fetch('http://192.168.10.31:8001/schRooms/?format=json').then((response)=>response.json())
+              fetch('http://192.168.10.7:8001/schRooms/?format=json').then((response)=>response.json())
+              .then((responseJson)=>{
+          
+                 
+                  this.setState({
+                      isLoading:true,
+                      dataSourceForSchRooms:responseJson,
+                      user:username,
+                      
+                  })
+                 
+              })
+        
+           
+            }
+          } catch(e) {
+              console.log("error in scheduale rooms", e);
+          }
+        }
+    
+
+    
+
+   getData();
         fetch('http://82.165.158.88/Item/?format=json').then((response)=>response.json())
         .then((responseJson)=>{
             this.setState({
@@ -93,7 +132,15 @@ class Items extends React.Component{
             })
         })
     }
- 
+    addToCart(){
+        // if(this.state.dataSourceForSchRooms.filter(d=>d.username==this.state.user))
+        // {
+        //     console.log('true')
+        // }
+        console.log(this.state.dataSourceForSchRooms,"this.state.user sairaaaaaaaaaaaaaaaaaaaaaa")
+
+    }
+   
    
     render() {
         //<Products products={this.state.dataSource.filter(d => d.category_id===this.props.navigation.getParam('category').id)} onPress={this.props.addItemToCart} room={this.props.navigation.getParam('room')}/>
@@ -113,10 +160,46 @@ class Items extends React.Component{
         //   this.state.dataSource[i]['room']=this.props.room;
         // }
         //room={this.props.room}
-        console.log(this.state.dataSource,"Products")
+        // console.log(this.state.dataSourceForSchRooms.filter(d=>d.hotel_id===this.props.hotel),"hotel sairaaaaaaaaaaaaaaaaa")
+
+        // if(this.state.dataSourceForSchRooms.filter(username===this.state.user))
+        // {
+        //     console.log('true')
+        // }
+        // console.log(this.state.dataSourceForSchRooms.filter(d=>d.username==this.state.user),"this.state.user sairaaaaaaaaaaaaaaaaaaaaaa")
+
         return (
             <View>
-                <Products products={this.state.dataSource.filter(d => d.category_id===this.props.id)} onPress={this.props.addItemToCart} buttonName={"add to cart"}/>
+                {/* <Products products={this.state.dataSource.filter(d => d.category_id===this.props.id)} onPress={this.props.addItemToCart} buttonName={"add to cart"}/> */}
+                <Products products={this.state.dataSource.filter(d => d.category_id===this.props.id)} 
+                onPress={()=>{   
+                    // console.log(this.state.user)  
+                    var myuser= this.state.dataSourceForSchRooms.filter(d=>d.username===this.state.user && d.hotel_id===this.props.hotel && d.checked_out==false);
+                    var isValid=false;
+                    // console.log(myuser[0].username,"username ***************************")
+                    if(myuser[0]!=null)                  
+                    {
+                        isValid=true;
+                    }
+                    // var myHotel= this.state.dataSourceForSchRooms.filter(d=>d.hotel_id===this.props.hotel);
+                    console.log(myuser,"hayeeeeeeeeeeeeeeeeeeeeeeeee");
+                        if(isValid)
+                        {
+                            console.log(isValid,"is valid--------------------")
+                            // {this.props.addItemToCart}
+                        }
+                        // this.state.dataSourceForSchRooms.filter(d=>console.log(d.hotel_id,this.props.hotel))
+                        // if(this.state.dataSourceForSchRooms.filter(d=>d.username=="uiii")==[])
+                        // {
+                        //     console.log(false)
+                        // }
+                        // console.log(this.state.dataSourceForSchRooms.filter(d=>d.username=="gjhf"))
+                        // else{
+                        //     {this.props.resetCart}
+                        // }
+                }
+                } 
+                buttonName={"add to cart"}/>
 
             </View>
         );
@@ -126,7 +209,7 @@ class Items extends React.Component{
 const mapDispatchToProps = (dispatch) => {
     return {
         addItemToCart: (product) => dispatch({ type: 'ADD_TO_CART', payload: product }),
-        // addItemToCart: (product) => dispatch({ type: 'ADD_TO_CART', payload: product })
+        resetCart: () => dispatch({ type: 'RESET_CART' })
 
     }
 }
