@@ -172,31 +172,23 @@ class Items extends React.Component{
             <View>
                 {/* <Products products={this.state.dataSource.filter(d => d.category_id===this.props.id)} onPress={this.props.addItemToCart} buttonName={"add to cart"}/> */}
                 <Products products={this.state.dataSource.filter(d => d.category_id===this.props.id)} 
-                onPress={()=>{   
-                    // console.log(this.state.user)  
+                onPress={(products)=>{   
+
                     var myuser= this.state.dataSourceForSchRooms.filter(d=>d.username===this.state.user && d.hotel_id===this.props.hotel && d.checked_out==false);
                     var isValid=false;
-                    // console.log(myuser[0].username,"username ***************************")
                     if(myuser[0]!=null)                  
                     {
                         isValid=true;
                     }
-                    // var myHotel= this.state.dataSourceForSchRooms.filter(d=>d.hotel_id===this.props.hotel);
-                    console.log(myuser,"hayeeeeeeeeeeeeeeeeeeeeeeeee");
                         if(isValid)
                         {
                             console.log(isValid,"is valid--------------------")
-                            // {this.props.addItemToCart}
+                            {this.props.addItemToCart(products)}
                         }
-                        // this.state.dataSourceForSchRooms.filter(d=>console.log(d.hotel_id,this.props.hotel))
-                        // if(this.state.dataSourceForSchRooms.filter(d=>d.username=="uiii")==[])
-                        // {
-                        //     console.log(false)
-                        // }
-                        // console.log(this.state.dataSourceForSchRooms.filter(d=>d.username=="gjhf"))
-                        // else{
-                        //     {this.props.resetCart}
-                        // }
+                        else{
+                        Alert.alert("Can't add to cart because You haven't booked a room in this hotel.");
+    }
+
                 }
                 } 
                 buttonName={"add to cart"}/>
@@ -214,10 +206,3 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 export default connect(null, mapDispatchToProps)(Items);
-// export default Menu;
-
-// const styles = StyleSheet.create({
-//     container: {
-//         flex: 1,
-//     }
-// });
