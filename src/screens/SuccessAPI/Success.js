@@ -9,6 +9,9 @@ import Hyperlink from 'react-native-hyperlink';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios'
 const url='../screens/Home/HomeScreen';
+import Moment from 'moment';
+
+
 export default class Success extends React.Component {
     static navigationOptions = ({ navigation }) => ({
       title: 'Success',
@@ -43,6 +46,7 @@ export default class Success extends React.Component {
        const hotel_name=this.props.navigation.getParam('hotelName');
        const r=this.props.navigation.getParam('r');
        const checkin=this.props.navigation.getParam('checkIn');
+       
        const checkout=this.props.navigation.getParam('checkOut');
        var username=""; //state
        //function to get username 
@@ -71,15 +75,16 @@ export default class Success extends React.Component {
         person1.append('username', username)
         person1.append('hotel_id', hotel_id)
         person1.append('room_type', room_type)
-        person1.append('checkin', '2021-03-25')
-        person1.append('checkout','2021-03-26' )
+        person1.append('checkin', Moment(checkin).format('YYYY-MM-DD'))
+        person1.append('checkout',Moment(checkout).format('YYYY-MM-DD') )
         person1.append('amount', amount)
         person1.append('hotel_name',hotel_name)
-        console.log(hotel_id, room_type, checkin,checkout,hotel_name,username)
+      
         //axios.post('http://192.168.10.31:8001/scheduledRoom',person1)
-        axios.post('http://192.168.10.7:8001/scheduledRoom',person1)
+        axios.post('http://192.168.10.30:8001/scheduledRoom',person1)
         .then((response) => {
          // Alert.alert("Modal has been closed."+response.data.booked);
+         console.log(response.data);
           if(response.data.booked==false) {
     
             Alert.alert('Contact Admin (Payment Done,room not booked)');

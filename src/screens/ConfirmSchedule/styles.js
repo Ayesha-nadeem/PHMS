@@ -37,6 +37,23 @@ const styles=StyleSheet.create({
         backgroundColor:"white",
         height:'200%'
       },
+      btn:{
+        color:'black',
+        //textAlign:'center',
+        backgroundColor:'white',
+        borderColor:'black',
+        borderRadius:10,
+        borderWidth:2,
+        width:'60%',
+        height:'70%',
+      //  marginVertical:20,
+        alignSelf:"center",
+        
+        
+       
+      },
+    
+
 });
 
 export default styles;

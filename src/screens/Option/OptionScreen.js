@@ -1,5 +1,5 @@
 import React, { Component }  from 'react';
-import {TextInput, Alert,Modal,FlatList, ScrollView, Text, View, TouchableHighlight, Image } from 'react-native';
+import {TextInput, Alert,Modal,FlatList, ScrollView, Text, View, TouchableHighlight, Image,ImageBackground } from 'react-native';
 import styles from './styles';
 //import { recipes } from '../../data/dataArrays';
 import MenuImage from '../../components/MenuImage/MenuImage';
@@ -51,11 +51,12 @@ export default class OptionScreen extends React.Component {
 
     }
     return (
+      <ImageBackground source={require('../../assets/background_dot.png')} resizeMode="repeat" style={styles.image_back}>
       <View>
-     {/* <View>
-        <SlideShow/>
-        </View> */}
-          <View style={styles.centeredView}>
+        
+     
+               <View style={styles.centeredView}>
+
               <TouchableHighlight
               
                 style={{ ...styles.openButton, backgroundColor: "orange" }}
@@ -79,6 +80,8 @@ export default class OptionScreen extends React.Component {
             
           </View>
       </View>
+      
+      </ImageBackground>
     );
   }
 }

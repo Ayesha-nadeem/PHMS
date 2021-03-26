@@ -39,8 +39,8 @@ const LoginScreen = ({ navigation }) => {
 
         // Add data again data
         person.append('password', password.value)
-        //axios.post('http://192.168.10.31:8001/login',person)
-        axios.post('http://192.168.10.7:8001/login',person)
+       
+        axios.post('http://192.168.10.30:8001/login',person)
         .then((response) => {
     //      Alert.alert("Modal has been closed."+response.data.valid+"  "+response.data.empty);
          // console.log(response);
@@ -59,26 +59,7 @@ const LoginScreen = ({ navigation }) => {
         }, (error) => {
           console.log("iamErrorr"+ error);
         });
-        // Put the ip here
-        // const ip = '';
-        // const data = await fetch(`http://192.168.100.5:8000/login`, {
-        //   method: 'post',
-        //   mode:'no-cors',
-        //   headers: {
-        //     'Accept': 'application/json',
-        //     'Content-Type': 'application/json',
-        //   },
-        //   body: JSON.stringify({
-        //     username:'ayesha',
-        //     password:'abcd@123'
-        //   })
-        // });
-        // const result = await data.json();
-        // Alert.alert("Modal has been closed."+result+"");
-
-        // if(result.valid) {
-        //   navigation.navigate('Home');
-        // }
+       
         //for saving username these 2 functions are written 
         const storeData = async (value) => {
           try {
