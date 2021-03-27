@@ -4,7 +4,8 @@ import {
     Text,
     StyleSheet,
     Button,
-    Alert
+    Alert,
+    ImageBackground
 } from "react-native";
 import Products from '../Menu/Products'
 import { connect } from 'react-redux'
@@ -36,6 +37,7 @@ class CartScreen extends Component {
         var timeslots=this.state.timeslots
         return (
             <View style={styles.container}>
+                 <ImageBackground source={require('../../assets/background_dot.png')} resizeMode="repeat" style={styles.image_back}>
                 {this.props.cartItems.length > 0 ?
                     <ShowCartItems
                         onPress={this.props.removeItem}
@@ -60,6 +62,7 @@ class CartScreen extends Component {
                 }
                 } title="Confirm Order"  />
             </View>
+            </ImageBackground>
             </View>
         );
     }
@@ -81,5 +84,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(CartScreen);
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    }
+    },
+    image_back: {
+ 
+        resizeMode: "repeat",
+        width:'100%',
+        backgroundColor:"white",
+        height:'200%'
+      },
 });

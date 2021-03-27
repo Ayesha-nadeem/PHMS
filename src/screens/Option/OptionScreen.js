@@ -1,5 +1,5 @@
 import React, { Component }  from 'react';
-import {TextInput, Alert,Modal,FlatList, ScrollView, Text, View, TouchableHighlight, Image } from 'react-native';
+import {TextInput, Alert,Modal,FlatList, ScrollView, Text, View, TouchableHighlight, Image,ImageBackground } from 'react-native';
 import styles from './styles';
 //import { recipes } from '../../data/dataArrays';
 import MenuImage from '../../components/MenuImage/MenuImage';
@@ -51,14 +51,15 @@ export default class OptionScreen extends React.Component {
 
     }
     return (
+      <ImageBackground source={require('../../assets/background_dot.png')} resizeMode="repeat" style={styles.image_back}>
       <View>
-     {/* <View>
-        <SlideShow/>
-        </View> */}
-          <View style={styles.centeredView}>
+        
+     
+               <View style={styles.centeredView}>
+
               <TouchableHighlight
               
-                style={{ ...styles.openButton, backgroundColor: "orange" }}
+                style={{ ...styles.openButton, backgroundColor: "white" }}
                 onPress={() => pressHandler("Menu")}                  >
                   <View styles={styles.container}>
                 
@@ -68,7 +69,7 @@ export default class OptionScreen extends React.Component {
                 </View>
               </TouchableHighlight>
               <TouchableHighlight
-                style={{ ...styles.openButton2, backgroundColor: "darkcyan" }}
+                style={{ ...styles.openButton2, backgroundColor: "white" }}
                 onPress={() => pressHandler("Room")}                  >
                   <View styles={styles.container}>
                 {/* sIq3ADHz */}
@@ -79,6 +80,8 @@ export default class OptionScreen extends React.Component {
             
           </View>
       </View>
+      
+      </ImageBackground>
     );
   }
 }

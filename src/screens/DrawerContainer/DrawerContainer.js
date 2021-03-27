@@ -1,8 +1,9 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View ,Image} from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import MenuButton from '../../components/MenuButton/MenuButton';
+import Logo from '../../components/Logo'
 
 export default class DrawerContainer extends React.Component {
   render() {
@@ -18,7 +19,9 @@ export default class DrawerContainer extends React.Component {
     const { navigation } = this.props;
     return (
       <View style={styles.content}>
+       
         <View style={styles.container}>
+        <Logo  />
           <MenuButton
             title="HOME"
             source={require('../../../assets/icons/home.png')}

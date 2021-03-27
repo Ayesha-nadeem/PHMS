@@ -12,11 +12,36 @@ const styles = StyleSheet.create({
     paddingLeft:20,
     paddingRight:20,
     textAlign: 'center',  
-    height: 40,  
+    height: 50,  
     borderRadius: 10,  
     borderWidth: 2,  
-    borderColor: '#FFA701',    
+    borderColor: '#FFA701', 
+    alignSelf:'center',
+       
   } ,
+  roomType: {
+     
+    backgroundColor: "black",
+    borderRadius: 0,
+    paddingVertical: 10,
+    paddingHorizontal: 0,
+    marginHorizontal:"20%",
+    marginTop:10,
+    marginBottom:10,
+    
+    color: "white",
+    textAlign:"center",
+    borderWidth:1,
+    borderColor:"blue",
+  },
+ 
+  image_back: {
+ 
+    resizeMode: "repeat",
+    width:'100%',
+    backgroundColor:"white",
+    height:'200%'
+  },
   container:{
     justifyContent:'center',
     alignItems:'center',
@@ -43,6 +68,7 @@ const styles = StyleSheet.create({
     justifyContent:'flex-end',
     padding: 2,
     borderWidth:1,
+    borderRadius:12,
     
   },
   ProductbuttonIcon: {
@@ -55,8 +81,9 @@ const styles = StyleSheet.create({
   },
   boxes:{
     width:'80%',
-    backgroundColor: "cornsilk",
-    borderWidth: 1,
+    backgroundColor: "white",
+    borderWidth: 2,
+    borderRadius:17,
     
   },
   FlatlistStyle:
@@ -138,6 +165,16 @@ const styles = StyleSheet.create({
   categoriesInfo: {
     marginTop: 3,
     marginBottom: 5
+  },
+  room_photo: {
+    width: "100%",
+    height: 150,
+    borderRadius: 15,
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 0
+  },
+  spacer:{
+    marginBottom:"25%",
   }
 });
 

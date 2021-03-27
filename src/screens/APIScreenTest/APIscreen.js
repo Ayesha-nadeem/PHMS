@@ -51,6 +51,7 @@ export default class APIscreen extends React.Component {
         
         } 
         const naviPass=() =>{
+          console.log("api screen" + rentPerDay);
             //hurraaahhh
             this.props.navigation.navigate('Success',{roomType,rentPerDay,hotelName,hotel,checkIn,checkOut,r});
           

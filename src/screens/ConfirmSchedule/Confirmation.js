@@ -6,6 +6,7 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import Button from '../../components/Button'
 import Paragraph from '../../components/Paragraph'
 import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
+import { color } from 'react-native-reanimated';
 
 
 export default class Confirmation extends React.Component {
@@ -50,10 +51,22 @@ export default class Confirmation extends React.Component {
     const roomType=this.props.navigation.getParam('roomType');
     var amount=this.props.navigation.getParam('rentPerDay');
     var hotelName=this.props.navigation.getParam('hotelName');
+
+
     const navi=() =>{
      var checkIn=this.state.checkIn;
      var checkOut=this.state.checkOut;
+     var amount=this.state.amount;
+     if(checkOut=="" || checkIn=="")
+     {
+       Alert.alert("Please choose Checkin/Checkout Date.");
+
+     }
+     else
+     {
       this.props.navigation.navigate('APIscreen',{roomType,amount,hotelName,hotelId,checkIn,checkOut,roomId});
+     }
+     
     
 
     } 
@@ -71,7 +84,16 @@ export default class Confirmation extends React.Component {
         const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24)); 
         console.log(diffTime + " milliseconds");
         console.log(diffDays + " days");
-        this.setState({amount:amount*diffDays})
+        
+        if(diffDays==0)
+        {
+          
+          this.setState({amount:amount*1});
+        }   
+        else
+        {
+          this.setState({amount:amount*diffDays});
+        }
       }
         
      
@@ -91,8 +113,19 @@ export default class Confirmation extends React.Component {
         const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24)); 
         console.log(diffTime + " milliseconds");
         console.log(diffDays + " days");
-        this.setState({amount:amount*diffDays});   
+     
        
+        if(diffDays==0)
+        {
+          console.log("true 0");
+          this.setState({amount:amount*1});
+        }   
+        else
+        {
+          this.setState({amount:amount*diffDays});
+        }
+       
+        console.log(amount);
       });
       //this.setState({checkOut : new Date(date)});
       console.log(this.state.checkOut);
@@ -110,8 +143,8 @@ export default class Confirmation extends React.Component {
     };
 
     const btn1=<View>
-    {!(this.state.checkIn) && <Button title="Check In" width='25'    onPress={showDatePicker}>Check-In</Button>}
-    <Text onPress={showDatePicker}>{this.state.checkIn && this.state.checkIn.toDateString()}</Text>
+    {!(this.state.checkIn) && <Button title="Check In" style={styles.btn} onPress={showDatePicker}>Check-In</Button>}
+    <Text style={{textAlign:"center"}}  onPress={showDatePicker}>{this.state.checkIn && this.state.checkIn.toDateString()}</Text>
 
     
     <DateTimePickerModal
@@ -122,8 +155,8 @@ export default class Confirmation extends React.Component {
         minimumDate={new Date()}/>
 </View>
 const btn2=<View>
-{!(this.state.checkOut) && <Button title="Check In" width='25'    onPress={showDatePicker1}>Check-Out</Button>}
-<Text onPress={showDatePicker1}>{this.state.checkOut && this.state.checkOut.toDateString()}</Text>
+{!(this.state.checkOut) && <Button title="Check In"    style={styles.btn}  onPress={showDatePicker1}>Check-Out</Button>}
+<Text  style={{textAlign:"center"}}  onPress={showDatePicker1}>{this.state.checkOut && this.state.checkOut.toDateString()}</Text>
 
 
 <DateTimePickerModal
@@ -138,7 +171,7 @@ const btn2=<View>
       const tableData= [
         [hotelName],
         [ roomType],
-        [this.state.amount+' PKR/night'],
+        [this.state.amount+' PKR'],
         [btn1],
         [btn2]
       ];

@@ -120,7 +120,14 @@ const styles = StyleSheet.create({
   categoriesInfo: {
     marginTop: 3,
     marginBottom: 5
-  }
+  },
+  image_back: {
+ 
+    resizeMode: "repeat",
+    width:'100%',
+    backgroundColor:"white",
+    height:'200%'
+  },
 });
 
 export default styles;

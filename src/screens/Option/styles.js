@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
     height: 200,
     width:260,
     marginTop:500,
-    elevation: 2
+    elevation: 2,
+    borderWidth:2,
   },
   openButton2: {
     backgroundColor: "#F194FF",
@@ -30,10 +31,11 @@ const styles = StyleSheet.create({
     height: 200,
     width:260,
     marginTop:20,
-    elevation: 2
+    elevation: 2,
+    borderWidth:2,
   },
   textStyle: {
-    color: "white",
+    color: "black",
     textShadowColor:"black",
     textShadowRadius:3,
     height: 60,
@@ -50,7 +52,14 @@ const styles = StyleSheet.create({
     marginLeft:60,
     height: 120,
     width: 120
-  }
+  },
+  image_back: {
+ 
+    resizeMode: "repeat",
+    width:'100%',
+    backgroundColor:"white",
+    height:'100%'
+  },
 });
 
 export default styles;

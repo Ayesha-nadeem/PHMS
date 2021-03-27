@@ -1,5 +1,6 @@
 import React, { Component }  from 'react';
-import {TextInput, Alert,Modal,FlatList, ScrollView, Text, View, TouchableHighlight, Image } from 'react-native';
+import {TextInput, Alert,Modal,FlatList, ScrollView, Text, View, TouchableHighlight, Image,ImageBackground } from 'react-native';
+
 import styles from './styles';
 //import { recipes } from '../../data/dataArrays';
 import MenuImage from '../../components/MenuImage/MenuImage';
@@ -44,7 +45,7 @@ export default class DisplayScheduledRoomsScreen extends React.Component {
           username=username.value;
           //console.log(username);
          // fetch('http://192.168.10.31:8001/schRooms/?format=json').then((response)=>response.json())
-          fetch('http://192.168.10.7:8001/schRooms/?format=json').then((response)=>response.json())
+          fetch('http://192.168.10.29:8001/schRooms/?format=json').then((response)=>response.json())
           .then((responseJson)=>{
       
              
@@ -72,11 +73,11 @@ export default class DisplayScheduledRoomsScreen extends React.Component {
 
  avatarImage=img=> {
     switch (img) {
-      case "Deluxe":
+      case "Comfort":
         return require('../../../assets/rooms/Deluxe.jpg');
-      case "Suite":
+      case "Executive":
         return require('../../../assets/rooms/Suite.jpg');
-      case "Junior":
+      case "Deluxe":
         return require('../../../assets/rooms/Junior.jpg');
       default:
         return require('../../../assets/rooms/Single.jpg');
@@ -85,33 +86,22 @@ export default class DisplayScheduledRoomsScreen extends React.Component {
 
   renderRecipes = ({ item }) => (
     
-    <TouchableHighlight underlayColor='rgba(73,182,77,1,0.9)' onPress={() => 
-      {
-       //this.setState({hotelname:item.name,hotelid:item.id});
-    //   var hotel = item.id;
-    //   var hotelName=item.name;
-    //   console.log(hotel);
-    //'image!name-of-the-asset'
-    Alert.alert(""+item.roomtype);
-    
-    console.log(item.checked_out);
-} }>
+    <TouchableHighlight underlayColor='rgba(73,182,77,1,0.9)'>
     
   
       <View style={styles.container}>
-        
-        <Image style={styles.photo} source={this.avatarImage(item.roomtype)}/>
         <View style={styles.boxes}>
-        <Text style={styles.Productbuttontitle}>Username: {item.username}</Text>
-        <Text  style={styles.Productbuttontitle}>Hotel: {item.hotel_name}</Text>
-        <Text  style={styles.Productbuttontitle}>Room Type {item.roomtype}</Text>
-        <Text  style={styles.Productbuttontitle}>Amount Due: {item.amount}</Text>
-        <Text  style={styles.Productbuttontitle}>CheckIn Date: {Moment(item.checkin).format('MMM d, YYYY')}</Text>
-        <Text  style={styles.Productbuttontitle}>CheckOut Date: {Moment(item.checkout).format('MMM d, YYYY')}</Text>
-        <Text  style={styles.Productbuttontitle}>CheckOut Status: {String(item.checked_out)}</Text>
+            <Image style={styles.room_photo} source={this.avatarImage(item.roomtype)}/>
+            <Text style={styles.Productbuttontitle}>Username: {item.username}</Text>
+            <Text  style={styles.Productbuttontitle}>Hotel: {item.hotel_name}</Text>
+            <Text  style={styles.Productbuttontitle}>Room Type: {item.roomtype}</Text>
+            <Text  style={styles.Productbuttontitle}>Amount Paid: {item.amount}</Text>
+            <Text  style={styles.Productbuttontitle}>CheckIn Date: {Moment(item.checkin).format('YYYY-MM-DD')}</Text>
+            <Text  style={styles.Productbuttontitle}>CheckOut Date: {Moment(item.checkout).format('YYYY-MM-DD')}</Text>
+            <Text  style={styles.Productbuttontitle}>CheckOut Status: {String(item.checked_out)}</Text>
         </View>
 
-        {/* <Text style={styles.category}>{getCategoryName(item.categoryId)}</Text> */}
+       
       </View>
     </TouchableHighlight>
   );
@@ -121,8 +111,11 @@ export default class DisplayScheduledRoomsScreen extends React.Component {
     Moment.locale('en');
     return (
 
-      <View>
-       <FlatList
+      <ScrollView>
+         <ImageBackground source={require('../../assets/background_dot.png')} resizeMode="repeat" style={styles.image_back}>
+         
+         <Text style={styles.roomType}>My Booked Rooms</Text>
+          <FlatList style={styles.spacer}
           vertical
           showsVerticalScrollIndicator={false}
           numColumns={1}
@@ -130,7 +123,11 @@ export default class DisplayScheduledRoomsScreen extends React.Component {
           renderItem={this.renderRecipes}
           keyExtractor={item => item.id}
         />
-      </View>
+        
+
+        
+        </ImageBackground>
+      </ScrollView>
     );
   }
 }
