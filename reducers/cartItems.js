@@ -1,6 +1,3 @@
-const INITIAL_STATE = {
-    loggedIn: true
-  }
 
 const cartItems = (state = [], action={}) => {
     switch (action.type) {
@@ -16,7 +13,15 @@ const cartItems = (state = [], action={}) => {
 
             }
         case 'RESET_CART':
-            return module.exports.default();           
+            // return module.exports.default();
+            { 
+                console.log("hello i am store");
+                state=[];
+                return state
+            }
+            
+        default:
+              return state;          
     }
 
     return state
