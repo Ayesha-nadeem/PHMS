@@ -59,7 +59,7 @@ export default class OptionScreen extends React.Component {
 
               <TouchableHighlight
               
-                style={{ ...styles.openButton, backgroundColor: "orange" }}
+                style={{ ...styles.openButton, backgroundColor: "white" }}
                 onPress={() => pressHandler("Menu")}                  >
                   <View styles={styles.container}>
                 
@@ -69,7 +69,7 @@ export default class OptionScreen extends React.Component {
                 </View>
               </TouchableHighlight>
               <TouchableHighlight
-                style={{ ...styles.openButton2, backgroundColor: "darkcyan" }}
+                style={{ ...styles.openButton2, backgroundColor: "white" }}
                 onPress={() => pressHandler("Room")}                  >
                   <View styles={styles.container}>
                 {/* sIq3ADHz */}
