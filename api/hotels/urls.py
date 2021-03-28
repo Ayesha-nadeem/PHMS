@@ -18,10 +18,10 @@ urlpatterns = [
     path("register", views.register, name="register"),
     path("scheduledRoom", views.scheduleRoom, name="scheduledRoom"),
     path("login",views.login, name="login"),
+    path("GetUserByUsername",views.GetUserByUsername, name="GetUserByUsername"),
+    path("UpdateUser",views.UpdateUser, name="UpdateUser"),
     path("logout",views.logout,name="logout"),
     path('admin/home', views.home), 
-
-
     path('admin/createHotels', views.createHotels),
     path('admin/saveHotels', views.saveHotels),
     path('admin/editHotels/<int:id>', views.editHotels),

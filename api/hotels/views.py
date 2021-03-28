@@ -12,7 +12,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.core import serializers
-
+from django.core.serializers import serialize
+import json
 # class ScheduledRoomList(APIView):
 #     """
 #     List all snippets, or create a new snippet.
@@ -141,6 +142,78 @@ def register(request):
         else:
             #messages.info(request,'password not matching..')    
             return JsonResponse({'valid':False,'exist':False})
+def GetUserByUsername(request):
+    if request.method == 'GET':
+        username = request.GET['username']
+       # password = request.GET['password']
+#or password is None or username == '' or password==''
+        if username is None or username=='':
+            return JsonResponse({'User_exists': False, 'empty': True})
+
+        print("user"+username)
+        #user = auth.authenticate(username=username,password=password)
+        try:
+
+            userpk = User.objects.get(username=username).pk
+        except:
+            return JsonResponse({'User_exists': False, 'empty': False})
+
+        responseUser = User.objects.filter(username=username)
+           #userpk=User.objects.get(username=username).pk
+        print(userpk)
+            #,'data':responseUser
+        str_data = serialize('json', responseUser)
+            # Or you don't need to provide the `cls` here because by default cls is DjangoJSONEncoder
+        data = json.loads(str_data)
+        return JsonResponse({'User_exists': False, 'data': data})
+
+       # print("user1111111"+user+"")
+
+        # if userpk is not None or userpk != '':
+        #     #print("11111111111111111111")
+        #     responseUser = User.objects.filter(username=username)
+        #     #userpk=User.objects.get(username=username).pk
+        #     print(userpk)
+        #     #,'data':responseUser
+        #     str_data = serialize('json', responseUser)
+        #     # Or you don't need to provide the `cls` here because by default cls is DjangoJSONEncoder
+        #     data = json.loads(str_data)
+        #     return JsonResponse({'User_exists': False, 'data': data})
+
+        #     #return JsonResponse(serializers.serialize('json', responseUser), safe=False)
+        # else:
+        #    # print("0000000000000000")
+        #     return JsonResponse({'User_exists': False, 'empty': False})
+
+
+def UpdateUser(request):
+    if request.method == 'POST':
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        username = request.POST['username']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+        email = request.POST['email']
+        if first_name=='' or last_name=='' or username=='' or password1=='' or password2=='' or email=='':
+            return JsonResponse({'saved': False, 'valid': False, 'empty':True})
+        if password1 == password2:
+            if User.objects.filter(username=username).exists():
+                userpk = User.objects.get(username=username).pk
+                user=User.objects.get(pk=userpk)
+                user.first_name=first_name
+                user.last_name=last_name
+                user.password=password1
+                user.email=email
+                user.save()
+               #messages.info(request,'Username Taken')
+               # user=User.objects.get(username=username,password=password)
+
+                return JsonResponse({'saved': True, 'valid': True,'empty':False})
+            else:
+                return JsonResponse({'saved': False, 'valid': False,'empty':False})
+        else:
+            #messages.info(request,'password not matching..')
+            return JsonResponse({'saved': False, 'valid': False,'empty':False})
 def scheduleRoom(request):
 
     if request.method == 'POST':
