@@ -165,7 +165,7 @@ def GetUserByUsername(request):
         str_data = serialize('json', responseUser)
             # Or you don't need to provide the `cls` here because by default cls is DjangoJSONEncoder
         data = json.loads(str_data)
-        return JsonResponse({'User_exists': False, 'data': data})
+        return JsonResponse({'User_exists': True, 'data': data})
 
        # print("user1111111"+user+"")
 
@@ -202,7 +202,9 @@ def UpdateUser(request):
                 user=User.objects.get(pk=userpk)
                 user.first_name=first_name
                 user.last_name=last_name
-                user.password=password1
+                user.set_password(password1)  # replace with your real password
+
+                #user.password=password1
                 user.email=email
                 user.save()
                #messages.info(request,'Username Taken')
