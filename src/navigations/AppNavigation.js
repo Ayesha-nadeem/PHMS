@@ -16,6 +16,7 @@ import Items from '../screens/Menu/items';
 import Menu from '../screens/Menu/Menu';
 import StartScreen from '../screens/StartScreen';
 import LoginScreen from '../screens/LoginScreen';
+import UpdateScreen from '../screens/UpdateScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import DrawerContainer from '../screens/DrawerContainer/DrawerContainer';
@@ -36,6 +37,7 @@ const MainNavigator = createStackNavigator(
     Home: HomeScreen,
     StartScreen:StartScreen,
     LoginScreen:LoginScreen,
+    UpdateScreen:UpdateScreen,
     RegisterScreen:RegisterScreen,
     ForgotPasswordScreen:ForgotPasswordScreen,
     DisplayScheduledRooms:DisplayScheduledRoomsScreen,
