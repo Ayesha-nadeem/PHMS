@@ -5,7 +5,8 @@ import Logo from '../components/Logo'
 import Header from '../components/Header'
 import TextInput from '../components/TextInput'
 import Button from '../components/Button'
-import { emailValidator } from '../helpers/usernameValidator'
+import { emailValidator } from '../helpers/emailValidator'
+import { Alert } from 'react-native'
 
 const ForgotPasswordScreen = ({ navigation }) => {
   const [email, setEmail] = useState({ value: '', error: '' })
@@ -16,6 +17,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
       setEmail({ ...email, error: emailError })
       return
     }
+    Alert.alert("This feature has not been added yet.")
     navigation.navigate('LoginScreen')
   }
 

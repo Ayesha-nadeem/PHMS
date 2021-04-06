@@ -1,5 +1,5 @@
 import React from 'react'
-import { ImageBackground, StyleSheet, KeyboardAvoidingView } from 'react-native'
+import { ImageBackground, StyleSheet, View } from 'react-native'
 import { theme } from '../core/theme'
 
 const Background = ({ children }) => (
@@ -8,22 +8,26 @@ const Background = ({ children }) => (
     resizeMode="repeat"
     style={styles.background}
   >
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
+    
+    <View style={styles.container} behavior="padding">
       {children}
-    </KeyboardAvoidingView>
+    </View>
   </ImageBackground>
 )
-
+//previously the above view was keyboard avoiding view
 const styles = StyleSheet.create({
   background: {
     flex: 1,
     width: '100%',
+    maxHeight:'140%',
     backgroundColor: theme.colors.surface,
   },
   container: {
     flex: 1,
-    padding: 20,
+    padding: '5%',
+    flexGrow:1,
     width: '100%',
+    maxHeight:'140%',
     maxWidth: 340,
     alignSelf: 'center',
     alignItems: 'center',

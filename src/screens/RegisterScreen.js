@@ -22,6 +22,9 @@ const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
   const [confirm_password, setConfirmPassword] = useState({ value: '', error: '' })
+// const [scroll, setScroll] =useState({value: true})
+
+  
 
   const onSignUpPressed =async () => {
     const first_nameError = nameValidator(first_name.value)
@@ -59,7 +62,7 @@ const RegisterScreen = ({ navigation }) => {
       console.log(password.value);
       console.log(confirm_password.value);
       // Add data again data
-      axios.post('http://192.168.10.7:8001/register',person)
+      axios.post('http://192.168.0.106:8001/register',person)
       .then((response) => {
         if (response.data.valid==true)
          {
@@ -88,9 +91,15 @@ const RegisterScreen = ({ navigation }) => {
       console.log("ERROR :" , err);
     }
   }
-
+ 
   return (
-    <ScrollView>
+    <View styles="outerView">
+    <ScrollView 
+    style={styles.scrollView} 
+    contentContainerStyle={styles.contentContainer} 
+   // onTouchStart={()=>  setScroll({value:false})}
+
+    >
     <Background>
      
       <Logo />
@@ -99,6 +108,7 @@ const RegisterScreen = ({ navigation }) => {
         label="First Name"
         returnKeyType="next"
         value={first_name.value}
+        
         onChangeText={(text) => setFirstName({ value: text, error: '' })}
         error={!!first_name.error}
         errorText={first_name.error}
@@ -152,7 +162,7 @@ const RegisterScreen = ({ navigation }) => {
       <Button
         mode="contained"
         onPress={onSignUpPressed}
-        style={{ marginTop: 24 }}
+        style={{ marginTop: '5%' }}
       >
         Sign Up
       </Button>
@@ -164,21 +174,35 @@ const RegisterScreen = ({ navigation }) => {
       </View>
     </Background>
     </ScrollView>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
-    marginTop: 4,
+    marginTop: '4%',
   },
   link: {
     fontWeight: 'bold',
     color: theme.colors.primary,
   },
   bottomMargin: {
-    marginBottom : 55,
-  }
+    marginBottom : '2%',
+  },
+  scrollView: {
+    height: 'auto',
+    maxHeight: '140%',
+    width: '100%',
+    alignSelf: 'center',
+    
+    
+  },
+  outerView:{
+      height: '100%',
+      padding:0,
+  },
+  
 })
 
 export default RegisterScreen
