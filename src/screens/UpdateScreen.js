@@ -22,6 +22,8 @@ const UpdateScreen = ({ navigation }) => {
   const [last_name, setLastName] = useState({ value: '', error: '' })
   const [user_name, setUserName] = useState({ value: '', error: '' })
   const [email, setEmail] = useState({ value: '', error: '' })
+ // const [isInfo, setInfoFlag]=useState({value:false})
+  const [isPass, setPassFlag]=useState({value:false})
   //const [old_password, setOldPassword] = useState({ value: '', error: '' })
   const [new_password, setNewPassword] = useState({ value: '', error: '' })
   const [confirm_password, setConfirmPassword] = useState({ value: '', error: '' })
@@ -58,8 +60,7 @@ const UpdateScreen = ({ navigation }) => {
             if (response)
             {
 
-                console.log("if condition");  
-                console.log(response.data.data[0]);
+                
                 setFirstName({value: response.data.data[0].fields.first_name, error: ""}); 
                 setLastName({value: response.data.data[0].fields.last_name, error: ""}); 
                 setEmail({value: response.data.data[0].fields.email, error: ""}); 
@@ -92,19 +93,42 @@ const UpdateScreen = ({ navigation }) => {
     const confirm_passwordError = passwordValidator(confirm_password.value)
     
     try {
-    if (emailError || new_passwordError || confirm_passwordError || first_nameError|| last_nameError|| user_nameError) {
+    if (emailError || first_nameError|| last_nameError|| user_nameError) {
       console.log("empty");
       setFirstName({ ...first_name, error: first_nameError })
       setLastName({ ...last_name, error: last_nameError })
       setUserName({ ...user_name, error: user_nameError})
       setEmail({ ...email, error: emailError })
       //setOldPassword({ ...old_password, error: old_passwordError })
-      setNewPassword({ ...new_password, error: new_passwordError })
+     
+    }
+    //if password updated but confirm not entered and vice versa
+    else if (new_passwordError && !(confirm_passwordError))
+    {
+      
+        setNewPassword({ ...new_password, error: new_passwordError })
+        return
+      
+    }
+    else if (confirm_passwordError && !(new_passwordError))
+    {
       setConfirmPassword({ ...confirm_password, error: confirm_passwordError })
       return
     }
     else{
      console.log("register else");
+
+
+     if (new_password.value=="")
+     {
+        setNewPassword({value: "Patrick13", error: ""});    //to comment
+        setConfirmPassword({value :"Patrick13", error:""});  //to comment
+        setPassFlag({value:false});
+     }
+     else{
+       console.log("Password changed as well.")
+       setPassFlag({value:true});
+     }
       const person = new FormData()
 
       // Add data to FormData instance which is person
@@ -113,37 +137,67 @@ const UpdateScreen = ({ navigation }) => {
       person.append('first_name', first_name.value)
       person.append('last_name', last_name.value)
       person.append('username', user_name.value)
-      person.append('password1', new_password.value)
-      person.append('password2', confirm_password.value)
       person.append('email', email.value)
 
       console.log(person);
       console.log(new_password.value);
       console.log(confirm_password.value);
       // Add data again data
-      axios.post('http://192.168.0.106:8001/UpdateUser',person)
-      .then((response) => {
-        if (response.data.valid==true)
-         {
-          
-          Alert.alert("Congratulations! User updated");
-          navigation.navigate('LoginScreen');
+      if (isPass.value==true)
+      {
+        
+        person.append('password1', new_password.value)
+        person.append('password2', confirm_password.value)
+        axios.post('http://192.168.0.106:8001/UpdateUser',person)
+        .then((response) => {
+          if (response.data.valid==true)
+           {
+            
+            Alert.alert("Congratulations! User updated");
+            navigation.navigate('LoginScreen');
+  
+            return;
+           }
+           else
+           {
+             Alert.alert("Oops! Passwords Don't Match. Enter again")
+             console.log("update failed");
+             setNewPassword({value:"", error: ""});
+             setConfirmPassword({value:"", error:""});
+             console.log(response.data);
+           }
+  
+         
+        }, (error) => {
+          console.log(error);
+        });
+      }
+      else{
+        console.log ("Attempt to change without password");
+        
+        axios.post('http://192.168.0.106:8001/UpdateUserInfo',person)
+        .then((response) => {
+          if (response.data.valid==true)
+           {
+            
+            Alert.alert("Congratulations! User updated");
+            navigation.navigate('Home');
+  
+            return;
+           }
+           else
+           {
+             Alert.alert("Update unsucessful! Try again")
+             console.log("update failed");
+             console.log(response.data);
+           }
+  
+         
+        }, (error) => {
+          console.log(error);
+        });
+      }
 
-          return;
-         }
-         else
-         {
-           Alert.alert("Oops! Passwords Don't Match. Enter again")
-           console.log("update failed");
-           setNewPassword({value:"", error: ""});
-           setConfirmPassword({value:"", error:""});
-           console.log(response.data);
-         }
-
-       
-      }, (error) => {
-        console.log(error);
-      });
     }
   }
     catch(err) {
