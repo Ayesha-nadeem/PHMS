@@ -185,7 +185,30 @@ def GetUserByUsername(request):
         #    # print("0000000000000000")
         #     return JsonResponse({'User_exists': False, 'empty': False})
 
+def UpdateUserInfo(request):
+    if request.method == 'GET':
+        first_name = request.GET['first_name']
+        last_name = request.GET['last_name']
+        username = request.GET['username']
+        email = request.GET['email']
 
+        if first_name=='' or last_name=='' or username=='' or email=='':
+            return JsonResponse({'saved': False, 'valid': False, 'empty': True})
+        if User.objects.filter(username=username).exists():
+            userpk = User.objects.get(username=username).pk
+            user = User.objects.get(pk=userpk)
+            user.first_name = first_name
+            user.last_name = last_name
+            user.email = email
+            user.save()
+               #messages.info(request,'Username Taken')
+               # user=User.objects.get(username=username,password=password)
+            return JsonResponse({'saved': True, 'valid': True, 'empty': False})
+        else:
+            return JsonResponse({'saved': False, 'valid': False,'empty':False})
+    else:
+            #messages.info(request,'password not matching..')
+            return JsonResponse({'saved': False, 'valid': False,'empty':False})
 def UpdateUser(request):
     if request.method == 'POST':
         first_name = request.POST['first_name']

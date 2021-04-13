@@ -20,8 +20,10 @@ urlpatterns = [
     path("login",views.login, name="login"),
     path("GetUserByUsername",views.GetUserByUsername, name="GetUserByUsername"),
     path("UpdateUser",views.UpdateUser, name="UpdateUser"),
+    path("UpdateUserInfo",views.UpdateUserInfo, name="UpdateUserInfo"),
     path("logout",views.logout,name="logout"),
     path('admin/home', views.home), 
+    
     path('admin/createHotels', views.createHotels),
     path('admin/saveHotels', views.saveHotels),
     path('admin/editHotels/<int:id>', views.editHotels),
