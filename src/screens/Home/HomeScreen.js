@@ -65,10 +65,11 @@ export default class HomeScreen extends React.Component {
        this.setState({hotelname:item.name,hotelid:item.id});
       var hotel = item.id;
       var hotelName=item.name;
+      var pic=item.photo_url;
       console.log(hotel);
       //Alert.alert("homescreen"+hotel+"");
 
-      this.props.navigation.navigate('Option',{hotel,hotelName});
+      this.props.navigation.navigate('Option',{hotel,hotelName,pic});
   
   } }>
       

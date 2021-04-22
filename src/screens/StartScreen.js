@@ -14,6 +14,7 @@ const StartScreen = ({ navigation }) => (
       Explore Your Destination.
     </Paragraph>
     <Button mode="contained" onPress={() => navigation.navigate('LoginScreen')}>
+
       Login
     </Button>
     <Button

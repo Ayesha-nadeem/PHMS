@@ -81,7 +81,7 @@ export default class Success extends React.Component {
         person1.append('hotel_name',hotel_name)
       
         //axios.post('http://192.168.10.31:8001/scheduledRoom',person1)
-        axios.post('http://192.168.10.29:8001/scheduledRoom',person1)
+        axios.post('http://192.168.10.8:8001/scheduledRoom',person1)
         .then((response) => {
          // Alert.alert("Modal has been closed."+response.data.booked);
          console.log(response.data);

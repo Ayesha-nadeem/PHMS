@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F194FF",
     borderRadius: 20,
     padding: 10,
-    height: 200,
+    height: 300,
     width:260,
     marginTop:500,
     elevation: 2,
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     padding: 10,
     height: 200,
     width:260,
-    marginTop:20,
+    marginTop:50,
     elevation: 2,
     borderWidth:2,
   },
@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     color: "black",
     textShadowColor:"black",
     textShadowRadius:3,
+    marginTop:50,
     height: 60,
     fontWeight: "bold",
     fontSize:30,
@@ -50,8 +51,8 @@ const styles = StyleSheet.create({
     borderWidth:2,
     borderRadius: 20,
     marginLeft:60,
-    height: 120,
-    width: 120
+    height: 270,
+    width: 170
   },
   image_back: {
  

@@ -38,7 +38,7 @@ class Items extends React.Component{
               username=username.value;
               //console.log(username);
              // fetch('http://192.168.10.31:8001/schRooms/?format=json').then((response)=>response.json())
-              fetch('http://192.168.10.29:8001/schRooms/?format=json').then((response)=>response.json())
+              fetch('http://192.168.10.8:8001/schRooms/?format=json').then((response)=>response.json())
               .then((responseJson)=>{
           
                  
@@ -103,7 +103,6 @@ class Items extends React.Component{
                         }
                         else if(myuser[0]!=null && myHotel[0]==null)
                         {
-                            console.log("woopsyyyyyyyyyyyyyyyyyyyyyyyyyyyy")
                             Alert.alert("By adding this item we will remove previous hotel's items from the cart.");
                             {this.props.resetCart()}
                             {this.props.addItemToCart(products)}

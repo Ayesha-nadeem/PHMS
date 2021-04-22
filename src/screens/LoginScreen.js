@@ -21,6 +21,9 @@ const LoginScreen = ({ navigation }) => {
     const passwordError = passwordValidator(password.value)
     try {
       if (usernameError || passwordError) {
+        console.log(usernameError)
+        console.log(passwordError)
+
         setUsername({ ...username, error: usernameError })
         setPassword({ ...password, error: passwordError })
         return
@@ -40,7 +43,7 @@ const LoginScreen = ({ navigation }) => {
         // Add data again data
         person.append('password', password.value)
        
-        axios.post('http://192.168.10.29:8001/login',person)
+        axios.post('http://192.168.10.8:8001/login',person)
         .then((response) => {
     //      Alert.alert("Modal has been closed."+response.data.valid+"  "+response.data.empty);
          // console.log(response);

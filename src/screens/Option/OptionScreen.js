@@ -7,6 +7,10 @@ import DrawerActions from 'react-navigation';
 //import { getCategoryName } from '../../data/MockDataAPI';
 import ShoppingCartIcon from '../../screens/shoppingCart/shoppingCart';
 import SlideShow from '../../components/SlideShow'
+import Button from '../../components/Button'
+import Background from '../../components/Background'
+import Logo from '../../components/Logo'
+import Header from '../../components/Header'
 
 export default class OptionScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -51,37 +55,51 @@ export default class OptionScreen extends React.Component {
 
     }
     return (
-      <ImageBackground source={require('../../assets/background_dot.png')} resizeMode="repeat" style={styles.image_back}>
-      <View>
+        <Background>
+            <Image style={styles.photo} source={{ uri:  this.props.navigation.getParam('pic')}} />
+            <Header>Welcome to {this.props.navigation.getParam('hotelName')}</Header>
+          <Button mode="contained"
+          onPress={() => pressHandler("Menu")}>
+          Menu
+          </Button>
+          <Button
+            mode="contained" 
+            onPress={() => pressHandler("Room")}    
+          >
+            Rooms
+          </Button>
+        </Background>
+          // <ImageBackground source={require('../../assets/background_dot.png')} resizeMode="repeat" style={styles.image_back}>
+      // <View>
         
      
-               <View style={styles.centeredView}>
+      //          <View style={styles.centeredView}>
 
-              <TouchableHighlight
+      //         <TouchableHighlight
               
-                style={{ ...styles.openButton, backgroundColor: "white" }}
-                onPress={() => pressHandler("Menu")}                  >
-                  <View styles={styles.container}>
+      //           style={{ ...styles.openButton, backgroundColor: "white" }}
+      //           onPress={() => pressHandler("Menu")}                  >
+      //             <View styles={styles.container}>
                 
-                {/* sIq3ADHz */}
-                <Text style={styles.textStyle}>Menu</Text>
-                <Image style={styles.photoStyle} source={require('../../../assets/menus.png')} />
-                </View>
-              </TouchableHighlight>
-              <TouchableHighlight
-                style={{ ...styles.openButton2, backgroundColor: "white" }}
-                onPress={() => pressHandler("Room")}                  >
-                  <View styles={styles.container}>
-                {/* sIq3ADHz */}
-                <Text style={styles.textStyle}>Rooms </Text>
-                <Image style={styles.photoStyle} source={require('../../../assets/rooms.png')} />
-                </View>
-              </TouchableHighlight>
+      //           {/* sIq3ADHz */}
+      //           <Text style={styles.textStyle}>Menu</Text>
+      //           <Image style={styles.photoStyle} source={require('../../../assets/menus.png')} />
+      //           </View>
+      //         </TouchableHighlight>
+      //         < TouchableHighlight
+      //           style={{ ...styles.openButton2, backgroundColor: "white" }}
+      //           onPress={() => pressHandler("Room")}                  >
+      //             <View styles={styles.container}>
+      //           {/* sIq3ADHz */}
+      //           <Text style={styles.textStyle}>Rooms </Text>
+      //           <Image style={styles.photoStyle} source={require('../../../assets/rooms.png')} />
+      //           </View>
+      //         </TouchableHighlight>
             
-          </View>
-      </View>
+      //     </View>
+      // </View>
       
-      </ImageBackground>
+      // </ImageBackground>
     );
   }
 }

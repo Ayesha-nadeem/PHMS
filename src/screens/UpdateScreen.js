@@ -54,7 +54,7 @@ const UpdateScreen = ({ navigation }) => {
         person3.append('username', uname.value)
         
         //kya? 
-        axios.get('http://192.168.0.106:8001/GetUserByUsername',{params: { username:uname.value}})
+        axios.get('http://192.168.10.8:8001/GetUserByUsername',{params: { username:uname.value}})
         .then((response) => {
             
             if (response)

@@ -15,7 +15,6 @@ const cartItems = (state = [], action={}) => {
         case 'RESET_CART':
             // return module.exports.default();
             { 
-                console.log("hello i am store");
                 state=[];
                 return state
             }

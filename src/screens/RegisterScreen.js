@@ -62,7 +62,7 @@ const RegisterScreen = ({ navigation }) => {
       console.log(password.value);
       console.log(confirm_password.value);
       // Add data again data
-      axios.post('http://192.168.0.106:8001/register',person)
+      axios.post('http://192.168.10.8:8001/register',person)
       .then((response) => {
         if (response.data.valid==true)
          {
@@ -91,7 +91,6 @@ const RegisterScreen = ({ navigation }) => {
       console.log("ERROR :" , err);
     }
   }
- 
   return (
     <View styles="outerView">
     <ScrollView 
@@ -101,8 +100,7 @@ const RegisterScreen = ({ navigation }) => {
 
     >
     <Background>
-     
-      <Logo />
+    <Logo />
       <Header>Create Account</Header>
       <TextInput
         label="First Name"
